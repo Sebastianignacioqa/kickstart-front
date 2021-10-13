@@ -17,12 +17,12 @@ return (<div className="container">
     <div className="abs-center">
         <form onSubmit={handleSubmit}>
             <div className="mb-3 w-100">
-                <label name="rut" className="form-label">RUT</label>
-                <input type="rut" className="form-control" id="rut" aria-describedby="emailHelp" onChange={actions.handleChange} value={store.login.rut} />
+                <label className="form-label">RUT</label>
+                <input name="rut" type="rut" className="form-control" id="rut" aria-describedby="emailHelp" onChange={actions.handleChange} value={store.login.rut} />
             </div>
             <div className="mb-3 w-100">
-            <label name="password" className="form-label">Password</label>
-            <input type ="password" className="form-control" id="exampleInputPassword1" onChange={actions.handleChange} value={store.login.password} />
+            <label className="form-label">Password</label>
+            <input name="password" type ="password" className="form-control" id="exampleInputPassword1" onChange={actions.handleChange} value={store.login.password} />
             </div>
             <div className="mb-3 form-check w-100">
             <input type="checkbox" className="form-check-input" id="exampleCheck1" value=""/>
