@@ -1,0 +1,13 @@
+.abs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+.btn-primary {
+    background-color: slateblue !important;
+    border: white !important;
+    font-family: 'Montserrat', sans-serif;
+    
+}
