@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from '../image.png';
+import logo from '../image2.png';
 import '../styles/Home.css'
+import Carousel from '../components/Carousel';
+import Footer from '../components/Footer';
 
 const Home = () => {
-    return(<div className="container">
-    <img src={logo} class="img-fluid w-50 p-2" alt="kickstart"/>
-    <h4>Los duendes están trabajando para que pronto puedas disfrutar de nuestra plataforma</h4>
+    return(<div className="container-fluid">
+    <img src={logo} className="img-fluid w-25" alt="kickstart"/><br></br><br></br>
+    <Carousel />
+    <Footer />
     </div>)
 }
 export default Home
