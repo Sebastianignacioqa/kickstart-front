@@ -1,9 +1,10 @@
 import React from "react";
 
+
 const Carousel = () => {
 
     return (
-        <div className="container-fluid">
+        <div className="container">
             <div id="carouselExample" className="carousel carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

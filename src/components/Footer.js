@@ -1,12 +1,11 @@
 import React from "react";
+import '../styles/Footer.css'
 
 const Footer = () => {
-    return (<div className="containter-fluid">
-        <nav className="navbar navbar-light bg-light">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="/">© 2021 Copyright: Kickstart</a>
+    return (<div className="container">
+            <div className="footer">
+                <h1 className="text-light">© 2021 Copyright: Kickstart</h1>
             </div>
-        </nav>
     </div>)
 };
 export default Footer
