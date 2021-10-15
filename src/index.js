@@ -11,7 +11,7 @@ ReactDOM.render(
         <div className= "container">
             <div className="row">
                 
-                <div class="col-md-auto">
+                <div className="col-md-auto">
                     
                     <img  src={KSlogo} className="img-thumbnail mx-auto d-block" alt="" />
 

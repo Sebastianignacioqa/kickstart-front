@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import injectContext from "./store/appContext";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const Formulario = () => {
-	const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
+
+	const [formsent] = useState(false);
+	
 	return (
 		<>
 			<Formik
@@ -15,63 +18,7 @@ const Formulario = () => {
                     address: '',
                     phonenumber: ''
 				}}
-				validate={(values) => {
-					let errors = {};
-
-					// Validacion 
-					if(!values.name){
-						errors.name = 'Por favor ingresa un nombre'
-					} else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)){
-						errors.name = 'El nombre solo puede contener letras y espacios'
-					}
-
-                    if(!values.lastname){
-						errors.lastname = 'Por favor ingresa un apellido'
-					} else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastname)){
-						errors.lastname = 'El apellido solo puede contener letras y espacios'
-					}
-
-                    if(!values.RUT){
-						errors.RUT = 'Por favor ingresa tu Rut'
-					} else if(!/^[0-9.-]+$/.test(values.RUT)){
-						errors.RUT = 'El Rut solo puede contener numeros, puntos y guion.'
-					}
-
-                    if(!values.password){
-						errors.password = 'Por favor ingresa una contraseña'
-					} //else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]$/.test(values.password)){
-						//errors.password = 'La contraseña puede contener letras, numeros, puntos, guiones y guion bajo.'
-					//}
-
-					// Validacion correo
-					if(!values.mail){
-						errors.mail = 'Por favor ingresa un correo electronico'
-					} else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.mail)){
-						errors.mail = 'El correo ingresado debe ser uno valido, puede contener letras, numeros, puntos, guiones y guion bajo.'
-					}
-
-                    if(!values.address){
-						errors.address = 'Por favor ingresa un correo electronico'
-					} //else if(!/^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.address)){
-						//errors.address = 'La direccion solo puede contener letras, numeros, puntos y guiones.'
-					//}
-
-                    if(!values.phonenumber){
-						errors.phonenumber = 'Por favor ingresa tu numero de telefono movil'
-					} else if(!/^[0-9]+$/.test(values.phonenumber)){
-						errors.phonenumber = 'El numero de telefono movil solo puede contener numeros.'
-					}
-
-					return errors;
-				}}
-
-				onSubmit={(values, {resetForm}) => {
-					resetForm();
-					console.log('Formulario enviado');
-					cambiarFormularioEnviado(true);
-					
-				}}
-			>
+				>
 				{( {errors} ) => (
 					<Form className="formulario">
 						<div>
@@ -156,19 +103,7 @@ const Formulario = () => {
 							<label>
 								<Field type="radio" name="condiciones" value="acepto" /> He leído y acepto los términos y condiciones
 							</label>
-                            <label>
-                                <Field type="checkbox" id="terminos" name="terminos" value="acepto" /> He leído y acepto los términos y condiciones
-                                
-                            </label>
-
-                            <div id="checkbox-group">Checked</div>
-                            <div role="group" aria-labelledby="checkbox-group">
-                                <label>
-                                    <Field type="checkbox" name="checked" value="One" />
-                                    One
-                                </label>
-                                
-                            </div>
+                            
 							
 						</div>
 
@@ -177,7 +112,7 @@ const Formulario = () => {
 						
 
 						<button type="submit">Registrarse</button>
-						{formularioEnviado && <p className="exito">Formulario enviado con exito!</p>}
+						{formsent && <p className="exito">Formulario enviado con exito!</p>}
 					</Form>
 				)}
 
@@ -188,4 +123,4 @@ const Formulario = () => {
 	);
 }
  
-export default Formulario;
+export default injectContext(Formulario);
