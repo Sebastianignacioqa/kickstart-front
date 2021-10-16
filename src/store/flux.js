@@ -1,8 +1,21 @@
-export const getState = ({setStore, getStore, getActions}) => {
+export const getState = ({ setStore, getStore, getActions }) => {
 
     return {
         store: {
-            login: {rut:"", password:""}
+            login: { rut: "", password: "" },
+            signUpForm: {
+                firstName: '',
+                lastName: '',
+                rut: '',
+                email: '',
+                password: '',
+                address: '',
+                phoneNumber: '',
+                storeName: '',
+                linkRRSS: '',
+                category: '',
+                acceptedTerms: ''
+            }
         },
         actions: {
             getLogin: () => {
@@ -10,21 +23,20 @@ export const getState = ({setStore, getStore, getActions}) => {
                 fetch('http://localhost:8080/login', {
                     method: "POST",
                     headers: {
-                "Content-Type": "application/json",
-                "Accept": 'application/json',
-            },
-            body: JSON.stringify(store.login)
-            })
-            .then(resp => {
-                return resp.json();
-            })
-            .then(data => {
-                console.log("Logeo exisoto!",data);
-            })
-            .catch(error => {
-
-                 console.log(error);
-            })
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.login)
+                })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        console.log("Logeo exisoto!", data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             },
 
             getLogin2: () => {
@@ -32,35 +44,63 @@ export const getState = ({setStore, getStore, getActions}) => {
                 fetch('http://localhost:8080/login2', {
                     method: "POST",
                     headers: {
-                "Content-Type": "application/json",
-                "Accept": 'application/json',
-            },
-            body: JSON.stringify(store.login)
-            })
-            .then(resp => {
-                return resp.json();
-            })
-            .then(data => {
-                console.log("Logeo exisoto!",data);
-            })
-            .catch(error => {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.login)
+                })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        console.log("Logeo exisoto!", data);
+                    })
+                    .catch(error => {
 
-                 console.log(error);
-            })
+                        console.log(error);
+                    })
             },
-
 
             handleChange: (e) => {
-                const {login} = getStore();
+                const { login } = getStore();
                 setStore({
-                    login: { ...login, [e.target.name]: e.target.value }
+                    login: { ...login, [e.target.name]: e.target.value },
                 })
-        },
+            },
+
+            handleChange: (e) => {
+                const store = getStore();
+                setStore({
+                    signUpForm: { ...store.userProfile, [e.target.name]: e.target.value}
+                })
+            },
+
             handleSubmit: (e) => {
-            e.preventDefault();
-            const store = getStore()
-            console.log(store.login)
+                e.preventDefault();
+                const store = getStore()
+                console.log(store.login);
+                console.log(store.signUpForm);
+            },
+
+            getSignUp: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/registrotienda', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(store.registrotienda)
+                })
+                .then(resp => {
+                    return resp.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            }
         }
     }
-}
 }
