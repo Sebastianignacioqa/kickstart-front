@@ -4,15 +4,15 @@ export const getState = ({ setStore, getStore, getActions }) => {
         store: {
             login: { rut: "", password: "" },
             signUpForm: {
-                firstName: '',
-                lastName: '',
+                firstname: '',
+                lastname: '',
                 rut: '',
                 email: '',
                 password: '',
                 address: '',
-                phoneNumber: '',
-                storeName: '',
-                linkRRSS: '',
+                phonenumber: '',
+                storename: '',
+                link: '',
                 category: '',
                 acceptedTerms: ''
             }
@@ -68,28 +68,20 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 })
             },
 
-            handleChange: (e) => {
-                const store = getStore();
-                setStore({
-                    signUpForm: { ...store.userProfile, [e.target.name]: e.target.value}
-                })
-            },
-
             handleSubmit: (e) => {
                 e.preventDefault();
                 const store = getStore()
                 console.log(store.login);
-                console.log(store.signUpForm);
             },
 
-            getSignUp: () => {
+            getSignUp: (values) => {
                 const store = getStore();
                 fetch('http://localhost:8080/registrotienda', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(store.registrotienda)
+                    body: JSON.stringify(values)
                 })
                 .then(resp => {
                     return resp.json();

@@ -15,10 +15,10 @@ export const SellerSignUp = () => {
     }, []);
 
     const validate = Yup.object({
-        firstName: Yup.string()
+        firstname: Yup.string()
           .max(50, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
-        lastName: Yup.string()
+        lastname: Yup.string()
           .max(50, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
         rut: Yup.string()
@@ -30,17 +30,19 @@ export const SellerSignUp = () => {
           .required('Campo requerido.'),
         password: Yup.string()
           .min(8, 'La contraseña debe contener mínimo 8 caracteres.')
+          .max(20, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
         address: Yup.string()
+          .max(50)
           .required('Campo requerido.'),
-        phoneNumber: Yup.string()
+        phonenumber: Yup.string()
           .min(9, 'Debe ingresar un número válido de 9 dígitos.')
           .max(9, 'Debe ingresar un número válido de 9 dígitos.')
           .required('Campo requerido.'),
-        storeName: Yup.string()
-          .max(20)
+        storename: Yup.string()
+          .max(30)
           .required('Campo requerido.'),
-        linkRRSS: Yup.string()
+        link: Yup.string()
           .max(100, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
         category: Yup.string()
@@ -56,35 +58,36 @@ export const SellerSignUp = () => {
     return (
         <Formik
             initialValues={{
-                firstName: '',
-                lastName: '',
+                firstname: '',
+                lastname: '',
                 rut: '',
                 email: '',
                 password: '',
                 address: '',
-                phoneNumber: '',
-                storeName: '',
-                linkRRSS: '',
+                phonenumber: '',
+                storename: '',
+                link: '',
                 category: '',
                 acceptedTerms: false
             }}
             validationSchema={validate}
             onSubmit={values => {
-                console.log(values)
+              actions.getSignUp(values);
             }}>
             {formik => (
                 <div>
                     <h4 className="titulo">Registre su Tienda</h4>
-                    <Form onSubmit={actions.handleSubmit} onChange={actions.handleChange}>
-                        <TextField label="Nombre" name="firstName" type="text" value={store.signUpForm.firstName}/>
-                        <TextField label="Apellidos" name="lastName" type="text" value={store.signUpForm.lastName}/>
-                        <TextField label="RUT" name="rut" type="text" placeholder="Ej: 12.345.678-9" value={store.signUpForm.rut}/>
-                        <TextField label="Email" name="email" type="email" value={store.signUpForm.email}/>
-                        <TextField label="Contraseña" name="password" type="password" placeholder="Mínimo 8 caracteres" value={store.signUpForm.password}/>
-                        <TextField label="Dirección" name="address" type="text" placeholder="Comuna, Región" value={store.signUpForm.address}/>
-                        <TextField label="Teléfono celular" name="phoneNumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" value={store.signUpForm.phoneNumber}/>
-                        <TextField label="Nombre de la tienda" name="storeName" type="text" value={store.signUpForm.storeName}/>
-                        <TextField label="Red social de la tienda" name="linkRRSS" type="text" placeholder="Link de Instagram o Facebook" value={store.signUpForm.linkRRSS}/>
+                    {console.log(formik)}
+                    <Form>
+                        <TextField label="Nombre" name="firstname" type="text" />
+                        <TextField label="Apellidos" name="lastname" type="text" />
+                        <TextField label="RUT" name="rut" type="text" placeholder="Ej: 12.345.678-9" />
+                        <TextField label="Email" name="email" type="email" />
+                        <TextField label="Contraseña" name="password" type="password" placeholder="Mínimo 8 caracteres" />
+                        <TextField label="Dirección" name="address" type="text" placeholder="Comuna, Región" />
+                        <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" />
+                        <TextField label="Nombre de la tienda" name="storename" type="text" />
+                        <TextField label="Red social de la tienda" name="link" type="text" placeholder="Link de Instagram o Facebook" />
                         <MySelect label="Categorías" name="category" className="form-select shadow-none">
                             <option value="">Seleccione el rubro de su tienda</option>
                             <option value="artesania">Artesanía</option>
