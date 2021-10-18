@@ -69,7 +69,7 @@ export const BuyerSignUp = () => {
                         <TextField label="RUT" name="rut" type="text" placeholder="Ej: 12.345.678-9" />
                         <TextField label="Email" name="email" type="email" />
                         <TextField label="Contraseña" name="password" type="password" placeholder="Mínimo 8 caracteres" />
-                        <TextField label="Dirección" name="address" type="text" placeholder="Comuna, Región" />
+                        <TextField label="Dirección" name="address" type="text" placeholder="calle, pasaje, casa o depto, numero, Comuna, Región" />
                         <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" />
                         
 
