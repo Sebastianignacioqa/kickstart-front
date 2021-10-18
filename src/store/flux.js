@@ -1,26 +1,124 @@
-export const getState = ({setStore, getStore, getActions}) => {
+export const getState = ({ setStore, getStore, getActions }) => {
+
     return {
         store: {
-            userForm: {
-                name: '',
+            login: { rut: "", password: "" },
+            signUpForm: {
+                firstname: '',
                 lastname: '',
-                RUT: '',
+                rut: '',
+                email: '',
                 password: '',
-				mail: '',
                 address: '',
-                phonenumber: ''
-            },
-
+                phonenumber: '',
+                storename: '',
+                link: '',
+                category: '',
+                acceptedTerms: ''
+            }
         },
         actions: {
-            handleChange: (e) => {
+            getLogin: () => {
                 const store = getStore();
-                setStore({
-                    userForm: { ...store.userForm, [e.target.name]: e.target.value }
+                fetch('http://localhost:8080/login', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.login)
                 })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        console.log("Logeo exisoto!", data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+
+            getLogin2: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/login2', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.login)
+                })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        console.log("Logeo exisoto!", data);
+                    })
+                    .catch(error => {
+
+                        console.log(error);
+                    })
+            },
+
+            handleChange: (e) => {
+                const { login } = getStore();
+                setStore({
+                    login: { ...login, [e.target.name]: e.target.value },
+                })
+            },
+
+            handleSubmit: (e) => {
+                e.preventDefault();
+                const store = getStore()
+                console.log(store.login);
+            },
+
+            getSignUp: (values) => {
+                const store = getStore();
+                fetch('http://localhost:8080/registrotienda', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(values)
+                })
+                .then(resp => {
+                    return resp.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+
+                })
+
+                
+            },
+
+            getSignUp2: (values) => {
+                const store = getStore();
+                fetch('http://localhost:8080/registrocomprador', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(values)
+                })
+                .then(resp => {
+                    return resp.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
+
+                })
+
+                
             }
-
         }
-    };
-
+    }
 }

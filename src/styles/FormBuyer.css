@@ -1,0 +1,29 @@
+.img-fluid {
+    width: 260px;
+    margin-top: 10px;
+  }
+  .titulo {
+    text-align: center;
+  }
+  .error {
+    color:red;
+  }
+  button {
+    background: #9165e9 !important;
+    border-color: #9165e9 !important;
+    margin-bottom: 20px !important;
+  }
+  button:hover {
+    background: #7551bd !important;
+    border-color: #7551bd !important;
+  }
+  .checkbox {
+    margin-top: 25px;
+  }
+  .textcb {
+    padding-left: 9px;
+    text-decoration: underline;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
