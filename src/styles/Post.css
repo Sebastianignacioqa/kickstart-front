@@ -1,0 +1,10 @@
+.alert-info {
+    background-color: slateblue !important;
+    color: white !important;
+    font-family: 'Montserrat', sans-serif !important;
+    padding: 3px 3px 3px 3px !important;
+}
+
+.postform {
+    font-family: 'Montserrat', sans-serif !important;
+}
