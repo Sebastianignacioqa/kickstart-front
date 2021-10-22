@@ -69,8 +69,12 @@ export const getState = ({setStore, getStore, getActions}) => {
             e.preventDefault();
             const input = document.querySelector('input[type="file"]')
             const data = new FormData()
-            data.append('file', input.files[0])
+            for (let i in input.files) {
+                data.append('file', input.files[i])
+            }
+            /* data.append('file', input.files) */
             data.append('user', 'hubot')
+            console.log(data)
             fetch('http://localhost:8080/post', {
             "mode": "no-cors",
             method: 'POST',
