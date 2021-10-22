@@ -7,3 +7,5 @@ const Profile = () => {
         <h1>Hola {params.name}</h1>
     )
 }
+
+export default Profile

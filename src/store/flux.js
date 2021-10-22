@@ -1,3 +1,5 @@
+import { data } from "jquery";
+
 export const getState = ({setStore, getStore, getActions}) => {
 
     return {
@@ -60,7 +62,22 @@ export const getState = ({setStore, getStore, getActions}) => {
             e.preventDefault();
             const store = getStore()
             console.log(store.login)
-        }
+
+        },
+        handlePostSubmit: (e) => {
+            e.preventDefault();
+            const input = document.querySelector('input[type="file"]')
+            const data = new FormData()
+            data.append('file', input.files[0])
+            data.append('user', 'hubot')
+            fetch('http://localhost:8080/post', {
+            "mode": "no-cors",
+            method: 'POST',
+            body: data
+            })
+        },
+
+        
     }
 }
 }

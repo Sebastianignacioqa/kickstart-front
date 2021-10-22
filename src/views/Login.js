@@ -10,15 +10,15 @@ const {store, actions} = useContext(Context)
 return (<div className="container">
     <img src={logo} className="img-fluid w-25 p-2" alt="kickstart" />
     <div className="abs-center">
-        <form onSubmit={actions.handleSubmit}>
+        <form onSubmit={actions.handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3 w-100">
                 <label className="form-label">RUT</label>
-                <input name="rut" type="rut" className="form-control" id="rut" aria-describedby="emailHelp" required onChange={actions.handleChange} value={store.login.rut} />
+                <input name="rut" type="text" className="form-control" id="rut" required onChange={actions.handleChange} value={store.login.rut} />
                 <div className="invalid-feedback">
                 Por favor escribe tu RUT.
                 </div>
                 <div className="valid-feedback">
-                Looks good!
+                Excelente!
                 </div>
             </div>
             <div className="mb-3 w-100">
@@ -28,7 +28,7 @@ return (<div className="container">
                 Por favor escribe tu Password.
                 </div>
                 <div className="valid-feedback">
-                Looks good!
+                Excelente!
                 </div>
             </div>
             <div className="mb-3 form-check w-100">
