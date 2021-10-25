@@ -13,7 +13,7 @@ return (<div className="container">
         <form onSubmit={actions.handleSubmit}>
             <div className="mb-3 w-100">
                 <label className="form-label">RUT</label>
-                <input name="rut" type="rut" className="form-control" id="rut" aria-describedby="emailHelp" required onChange={actions.handleChange} value={store.login.rut} />
+                <input name="rut" type="text" className="form-control" id="rut" aria-describedby="emailHelp" required onChange={actions.handleChange} value={store.login.rut} />
             </div>
             <div className="mb-3 w-100">
             <label className="form-label">Password</label>
@@ -29,4 +29,4 @@ return (<div className="container">
         </div>
         </div>)
 }
-export default Login2
+export default Login2;

@@ -7,5 +7,7 @@
     padding: 20px 10px 20px 10px !important;
     background-color: slateblue !important;
     border: white !important;
-        
-    }
+}
+.container-btn {
+    margin-bottom: 15px;
+}
