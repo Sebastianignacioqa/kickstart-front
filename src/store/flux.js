@@ -129,25 +129,6 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 method: 'POST',
                 body: data
                 })
-            },
-            sendCategoria: () => {
-                const store = getStore();
-                fetch('http://localhost:8080/categorias', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({categoria: 'musica'})
-                })
-                .then(resp => {
-                    return resp.json();
-                })
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
             }
         }
     }
