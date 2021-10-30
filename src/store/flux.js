@@ -13,10 +13,12 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 phonenumber: '',
                 storename: '',
                 link: '',
-                category: '',
+                category_id: '',
                 acceptedTerms: ''
             },
-            categoria: ""
+            tiendas: [],
+            favorites: [],
+            categories: []
         },
         actions: {
             getLogin: () => {
@@ -77,21 +79,19 @@ export const getState = ({ setStore, getStore, getActions }) => {
 
             getSignUp: (values) => {
                 const store = getStore();
-                fetch('http://localhost:8080/registrotienda', {
+                fetch("http://localhost:8080/registrotienda", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(values)
                 })
-                .then(resp => {
-                    return resp.json();
-                })
+                .then(resp => resp.json())
                 .then(data => {
-                    console.log(data);
+                    console.log(data)
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log(error)
                 })
             },
             getSignUp2: (values) => {
@@ -129,6 +129,27 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 method: 'POST',
                 body: data
                 })
+            },
+            showPapeleria: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 'papeleria'})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            getCategories: () => {
+                fetch('http://localhost:8080/categories', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then (data => setStore({categories: data}))
             }
         }
     }

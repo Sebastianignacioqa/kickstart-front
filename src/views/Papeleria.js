@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Card from '../components/Card';
+import React, { useEffect, useContext } from 'react';
+import { Context } from '../store/appContext';
 
 const Papeleria = () => {
+    const {store, actions} = useContext(Context);
 
-    const [tienda, setTienda] = useState([]);
-
-    useEffect(() => {
-        sendCategoria()
+    useEffect (() => {
+        actions.showPapeleria();
     }, []);
 
-    const sendCategoria = () => {
-        fetch('http://localhost:8080/categorias', {
-            method: "POST",
-            headers: {
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({categoria: 'papeleria'})
-        }).then ((res) => res.json())
-        .then ((data) => {
-            setTienda(data)
-            console.log(data);
-        })
-        .catch (error => console.log(error))
-    };
-
     return (
-        <div>
-            {tienda.map((tiendas, i) => <Card data={tiendas}/>)}
-        </div>
-    )
+        <>
+            {store.tiendas && store.tiendas.map((tiendaspapel, index) => <p key={index}>{tiendaspapel}</p>)}
+        </>
+    );
 };
 
 export default Papeleria;

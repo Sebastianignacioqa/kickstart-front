@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../store/appContext';
 
-const Card = (props) => {
+const Card = () => {
+    const { store } = useContext(Context);
+
     return (
-        <div className="card" style={{width: "18rem"}}>
-            <img src="..." className="card-img-top" alt="..."/>
-            <div className ="card-body">
-            <h5 className ="card-title">{props.data}</h5>
-            <a href="#" className ="btn btn-primary">Visitar tienda</a>
-            </div>
-        </div>
+        <>
+            {store.categories.map((category, index) => <div className="card mx-auto mb-2" style={{ width: "17rem" }} key={index}>
+                <div className="card-body">
+                    <h5 className="card-title">{category.name}</h5>
+                    <div>
+                        <a href="#" className="btn btn-primary mt-2">Ver tiendas</a>
+                    </div>
+                </div>
+            </div>)}
+        </>
     )
 };
 

@@ -45,11 +45,8 @@ export const SellerSignUp = () => {
         link: Yup.string()
           .max(100, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
-        category: Yup.string()
-          .oneOf(
-              ['artesania', 'belleza', 'joyeria', 'musica', 'papeleria', 'vestuario', 'otro']
-          )
-          .required('Debe seleccionar el rubro de su tienda para poder continuar.'),
+/*         category_id: Yup.string()
+          .required('Debe seleccionar el rubro de su tienda para poder continuar.'), */
         acceptedTerms: Yup.boolean()
           .required('Campo requerido.')
           .oneOf([true], 'Debe aceptar los términos y condiciones para poder continuar.'),
@@ -67,7 +64,7 @@ export const SellerSignUp = () => {
                 phonenumber: '',
                 storename: '',
                 link: '',
-                category: '',
+                category_id: '',
                 acceptedTerms: false
             }}
             validationSchema={validate}
@@ -88,15 +85,9 @@ export const SellerSignUp = () => {
                         <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" />
                         <TextField label="Nombre de la tienda" name="storename" type="text" />
                         <TextField label="Red social de la tienda" name="link" type="text" placeholder="Link de Instagram o Facebook" />
-                        <MySelect label="Categorías" name="category" className="form-select shadow-none">
+                        <MySelect label="Categorías" name="category_id" className="form-select shadow-none">
                             <option value="">Seleccione el rubro de su tienda</option>
-                            <option value="artesania">Artesanía</option>
-                            <option value="belleza">Belleza</option>
-                            <option value="joyeria">Joyería</option>
-                            <option value="musica">Música</option>
-                            <option value="papeleria">Papelería</option>
-                            <option value="vestuario">Vestuario y Calzado</option>
-                            <option value="otro">Otro</option>
+                            {store.categories.map((category, index) => <option key={category.id} value={category.id}>{category.name}</option>)}
                         </MySelect>
 
                         <MyCheckbox name="acceptedTerms" className="checkbox"><span className="textcb">He leído y acepto los términos y condiciones</span></MyCheckbox>
