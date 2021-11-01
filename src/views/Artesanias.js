@@ -15,7 +15,7 @@ const Artesanias = () => {
             headers: {
                 "Content-Type":"application/json"
             },
-            body: JSON.stringify({categoria: 'artesania'})
+            body: JSON.stringify({categoria: 1})
         }).then ((res) => res.json())
         .then ((data) => {
             setTienda(data)

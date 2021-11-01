@@ -12,15 +12,6 @@ const Categories = () => {
             <img className="img-fluid" src={logo} alt=""/>
             <Card />
         </div>
-       /*  <div className="container">
-            <div className="row">
-                <div className="col-4 col-md-4"></div>
-                <div className="col-4 col-md-4"> */
-                    
-         /*        </div>
-                <div className="col-4 col-md-4"></div>
-            </div>
-        </div> */
     )
 };
 
