@@ -137,7 +137,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     headers: {
                         "Content-Type":"application/json"
                     },
-                    body: JSON.stringify({categoria: 'papeleria'})
+                    body: JSON.stringify({categoria: 5})
                 }).then (res => res.json())
                 .then ((data) => setStore({tiendas: data}))
             },
