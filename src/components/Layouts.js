@@ -4,6 +4,8 @@ import Login from "../views/Login";
 import Home from "../views/Home";
 import Login2 from "../views/Login2";
 import Post from "../views/Post";
+import Profile from "../views/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 const Layout = () => {
     return <Router>
@@ -21,7 +23,10 @@ const Layout = () => {
                 <Route exact path="/post">
                     <Post />
                 </Route>
-                <Route render={() => <h1>No encontrado</h1>}></Route>
+                <PrivateRoute exact path="/profile"component={()=> <Profile/>}/>
+                <Route render={() => <h1>No encontrado</h1>}>
+
+                </Route>
             </Switch>
         </div>
     </Router>

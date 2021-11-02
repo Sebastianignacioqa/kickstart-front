@@ -6,35 +6,17 @@ export const getState = ({setStore, getStore, getActions}) => {
     return {
         store: {
             login: {rut:"", password:""},
-            product: {item_title:"", item_description:"", item_stock:"", item_price:"", category:"", file:""}
+            product: {item_title:"", item_description:"", item_stock:"", item_price:"", category:"", file:""},
+            isAuth:localStorage.getItem("isAuth")
         },
         actions: {
-            getLogin: () => {
-                const store = getStore();
-                fetch('http://localhost:8080/login', {
-                    method: "POST",
-                    headers: {
-                "Content-Type": "application/json",
-                "Accept": 'application/json',
-            },
-            body: JSON.stringify(store.login)
-            })
-            .then(resp => {
-                return resp.json();
-            })
-            .then(data => {
-                console.log("Logeo exisoto!",data);
-            })
-            .catch(error => {
-
-                 console.log(error);
-            })
-            },
-
-            getLogin2: () => {
+            
+            handleSubmitLogin2: (evento, history) => {
+                evento.preventDefault()
                 const store = getStore();
                 fetch('http://localhost:8080/login2', {
                     method: "POST",
+                    mode: "cors",
                     headers: {
                 "Content-Type": "application/json",
                 "Accept": 'application/json',
@@ -45,25 +27,49 @@ export const getState = ({setStore, getStore, getActions}) => {
                 return resp.json();
             })
             .then(data => {
-                console.log("Logeo exisoto!",data);
-            })
+                if(data.msg === "User login success"){
+                localStorage.setItem("isAuth", JSON.stringify(true));
+                localStorage.setItem("access_token", JSON.stringify(data.access_token))
+                history.push("/profile")
+            }})
             .catch(error => {
 
                  console.log(error);
             })
             },
 
-
-            handleChange: (e) => {
+            handleChangeLogin: (evento) => {
                 const {login} = getStore();
                 setStore({
-                    login: { ...login, [e.target.name]: e.target.value }
+                    login: { ...login, [evento.target.name]: evento.target.value }
                 })
         },
-            handleSubmit: (e) => {
-            e.preventDefault();
-            const store = getStore()
-            console.log(store.login)
+            handleSubmitLogin1: (evento, history) => {
+                evento.preventDefault()
+                const store = getStore();
+                fetch('http://localhost:8080/login', {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                "Content-Type": "application/json",
+                "Accept": 'application/json',
+            },
+            body: JSON.stringify(store.login)
+            })
+            .then(resp => {
+                return resp.json();
+            })
+            .then(data => {
+                if(data.msg === "User login success"){
+                localStorage.setItem("isAuth", JSON.stringify(true));
+                localStorage.setItem("access_token", JSON.stringify(data.access_token))
+                history.push("/profile")
+            }})
+            .catch(error => {
+
+                 console.log(error);
+            })
+            },
 
         },
         handlePostSubmit: (e) => {
@@ -113,5 +119,4 @@ export const getState = ({setStore, getStore, getActions}) => {
 
         
     }
-}
 }
