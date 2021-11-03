@@ -40,25 +40,25 @@ const Layout = () => {
                 <Route exact path="/post">
                     <Post />
                 </Route>
-                <Route exact path="/tiendas_artesania">
+                <Route exact path="/Artesanía">
                     <Artesanias/>
                 </Route>
-                <Route exact path="/tiendas_belleza">
+                <Route exact path="/Belleza">
                     <Belleza/>
                 </Route>
-                <Route exact path="/tiendas_joyeria">
+                <Route exact path="/Joyería">
                     <Joyeria/>
                 </Route>
-                <Route exact path="/tiendas_musica">
+                <Route exact path="/Música">
                     <Musica/>
                 </Route>
-                <Route exact path="/tiendas_papeleria">
+                <Route exact path="/Papelería">
                     <Papeleria/>
                 </Route>
-                <Route exact path="/tiendas_vestuarioycalzado">
+                <Route exact path="/Vestuario y Calzado">
                     <Vestuario/>
                 </Route>
-                <Route exact path="/otras_categorias">
+                <Route exact path="/Otros">
                     <Otros/>
                 </Route>
                 <Route render={() => <h1>No encontrado</h1>}></Route>

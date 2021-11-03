@@ -11,7 +11,7 @@ const Card = () => {
                     <h5 className="card-title">{category.name}</h5>
                     {console.log(category.name)}
                     <div>
-                        <a href="#" className="btn btn-primary mt-2">Ver tiendas</a>
+                        <a href={category.name} className="btn btn-primary mt-2">Ver tiendas</a>
                     </div>
                 </div>
             </div>)}

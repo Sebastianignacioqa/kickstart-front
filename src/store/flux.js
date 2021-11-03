@@ -18,7 +18,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
             },
             tiendas: [],
             favorites: [],
-            categories: []
+            categories: [],
+            value: []
         },
         actions: {
             getLogin: () => {
@@ -130,6 +131,55 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 body: data
                 })
             },
+
+            showArtesania: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 1})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            showBelleza: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 2})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            showJoyeria: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 3})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            showMusica: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 4})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
             showPapeleria: () => {
                 const store = getStore();
                 fetch('http://localhost:8080/categorias', {
@@ -138,6 +188,30 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         "Content-Type":"application/json"
                     },
                     body: JSON.stringify({categoria: 5})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            showVestuario: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 6})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            showOtros: () => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: 7})
                 }).then (res => res.json())
                 .then ((data) => setStore({tiendas: data}))
             },

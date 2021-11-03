@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Card from '../components/Card';
+import React, { useEffect, useContext } from 'react';
+import { Context } from '../store/appContext';
 
 const Musica = () => {
+    const {store, actions} = useContext(Context);
 
-    const [tienda, setTienda] = useState([]);
-
-    useEffect(() => {
-        sendCategoria()
+    useEffect (() => {
+        actions.showMusica();
     }, []);
 
-    const sendCategoria = () => {
-        fetch('http://localhost:8080/categorias', {
-            method: "POST",
-            headers: {
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({categoria: 'musica'})
-        }).then ((res) => res.json())
-        .then ((data) => {
-            setTienda(data)
-            console.log(data);
-        })
-        .catch (error => console.log(error))
-    };
-
     return (
-        <div>
-            {tienda.map((tiendas, i) => <Card data={tiendas}/>)}
-        </div>
-    )
+        <>
+            {store.tiendas && store.tiendas.map((nombretienda, index) => <div className="card mx-auto mb-2" style={{ width: "17rem" }} key={index}>
+                <div className="card-body">
+                    <h5 className="card-title">{nombretienda}</h5>
+                    {console.log(nombretienda)}
+                    <div>
+                        <a href="#" className="btn btn-primary mt-2">Ver tienda</a>
+                    </div>
+                </div>
+            </div>)}
+        </>
+    );
 };
 
 export default Musica;
