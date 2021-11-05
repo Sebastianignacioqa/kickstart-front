@@ -6,6 +6,8 @@ import Login2 from "../views/Login2";
 import Post from "../views/Post";
 import Profile from "../views/Profile";
 import PrivateRoute from "./PrivateRoute";
+import Deseos from "../views/Deseos";
+import Tienda from "../views/Tienda";
 
 const Layout = () => {
     return <Router>
@@ -20,7 +22,13 @@ const Layout = () => {
                 <Route exact path="/login2">
                     <Login2 />
                 </Route>
-                <Route exact path="/post">
+                <Route exact path="/deseos">
+                    <Deseos />
+                </Route>
+                <Route exact path="/tienda">
+                    <Tienda />
+                </Route>
+                <Route exact path="/product">
                     <Post />
                 </Route>
                 <PrivateRoute exact path="/profile"component={()=> <Profile/>}/>

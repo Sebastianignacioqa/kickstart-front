@@ -4,3 +4,9 @@
     padding: 20px 20px 20px 20px;
     
 }
+
+.bg-primary {
+    background-color: slateblue !important;
+    border: white !important;
+    font-family: 'Montserrat', sans-serif !important;
+  }

@@ -11,3 +11,9 @@
     font-family: 'Montserrat', sans-serif !important;
     
 }
+
+.bg-primary {
+  background-color: slateblue !important;
+  border: white !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
