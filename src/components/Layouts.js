@@ -8,6 +8,8 @@ import Profile from "../views/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Deseos from "../views/Deseos";
 import Tienda from "../views/Tienda";
+import FormSeller from "../views/FormSeller";
+import FormBuyer from "../views/FormBuyer";
 
 const Layout = () => {
     return <Router>
@@ -27,6 +29,12 @@ const Layout = () => {
                 </Route>
                 <Route exact path="/tienda">
                     <Tienda />
+                </Route>
+                <Route exact path="/registrotienda">
+                    <FormSeller />
+                </Route>
+                <Route exact path="/registrocomprador">
+                    <FormBuyer />
                 </Route>
                 <Route exact path="/product">
                     <Post />

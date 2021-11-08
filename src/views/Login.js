@@ -10,7 +10,7 @@ const {store, actions} = useContext(Context)
 const history = useHistory();
 
 return (<div className="container">
-    <img src={logo} className="img-fluid w-25 p-2" alt="kickstart" />
+    <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
     <div className="abs-center">
         <form onSubmit={(evento) => actions.handleSubmitLogin1(evento, history)} className="needs-validation" noValidate>
             <div className="mb-3 w-100">

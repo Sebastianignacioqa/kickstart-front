@@ -19,7 +19,10 @@ return(<div className="container" >
         </div>
         <div className="col-6 form-group p-4">
             <label>Categoria</label>
-            <input onChange={actions.handleChangeProduct} type="text" name="category" placeholder="Categoria" className="form-control" required  value={store.product.category}/>
+            <select placeholder="Seleccionar" class="form-select" id="inputGroupSelect01">
+            <option className="text-black-50">Seleccionar</option>
+                {store.categories.map((category, index) => <option required value={store.product.category} key={category.id}>{category.name}</option>)}
+        </select>
         </div>
         <div className="col-6 form-group p-4">
             <label>Precio</label>

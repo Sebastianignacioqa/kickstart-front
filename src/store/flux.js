@@ -7,6 +7,23 @@ export const getState = ({ setStore, getStore, getActions }) => {
         store: {
             login: { rut: "", password: "" },
             product: { item_title: "", item_description: "", item_stock: "", item_price: "", category: ""},
+            signUpForm: {
+                firstname: '',
+                lastname: '',
+                rut: '',
+                email: '',
+                password: '',
+                address: '',
+                phonenumber: '',
+                storename: '',
+                link: '',
+                category_id: '',
+                acceptedTerms: ''
+            },
+            tiendas: [],
+            favorites: [],
+            categories: [],
+            value: [],
 
             isAuth: localStorage.getItem("isAuth")
         },
@@ -125,27 +142,42 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         console.log(error);
                     })
             },
-            getProduct: () => {
+            getSignUp: (values) => {
                 const store = getStore();
-                fetch('http://localhost:8080/product', {
-                    "mode": "no-cors",
+                fetch("http://localhost:8080/registrotienda", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                        "Accept": 'application/json',
+                        "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(store.product)
+                    body: JSON.stringify(values)
                 })
-                    .then(resp => {
-                        return resp.json();
-                    })
-                    .then(data => {
-                        console.log("Posteado", data);
-                    })
-                    .catch(error => {
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            },
+            getSignUp2: (values) => {
+                const store = getStore();
+                fetch('http://localhost:8080/registrocomprador', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(values)
+                })
+                .then(resp => {
+                    return resp.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log(error);
 
-                        console.log(error);
-                    })
+                })
             },
             handleChangeProduct: (evento) => {
                 const { product } = getStore();
@@ -154,6 +186,15 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     product
                 })
             },
+            getCategories: () => {
+                fetch('http://localhost:8080/categories', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then (data => setStore({categories: data}))
+            }
 
         },
     }

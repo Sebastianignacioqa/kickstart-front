@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { getState } from "./flux.js";
 
 export const Context = React.createContext(null);
@@ -16,6 +16,10 @@ const injectContext = PassedComponent => {
                 })
             })
         );
+
+        useEffect(() => {
+            state.actions.getCategories()
+        }, [])
 
         return (
             <Context.Provider value={state}>
