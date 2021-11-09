@@ -15,9 +15,9 @@ const NavbarFavs = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item dropdown">
-                            <Link className="btn btn-primary btnnav dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button className="btn btn-primary btnnav dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tiendas Favoritas
-                            </Link>
+                            </button>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                             {store.favoritos.map((item, index) => { 
                                 return <li className="dropdown-item" key={index}>{item}<button className="btn-sm btn-primary w-2 h-2 mx-2" onClick={() => actions.deleteElement(index)}>X</button></li>})}
