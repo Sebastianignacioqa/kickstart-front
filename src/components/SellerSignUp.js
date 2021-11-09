@@ -10,10 +10,6 @@ import * as Yup from 'yup';
 export const SellerSignUp = () => {
     const { store, actions} = useContext(Context);
 
-    useEffect(() => {
-      actions.getSignUp()
-    }, []);
-
     const validate = Yup.object({
         firstname: Yup.string()
           .max(50, 'Supera los caracteres permitidos.')

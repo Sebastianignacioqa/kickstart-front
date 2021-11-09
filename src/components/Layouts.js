@@ -7,13 +7,7 @@ import FormSeller from "../views/FormSeller";
 import FormBuyer from "../views/FormBuyer";
 import Categories from "../views/Categories";
 import Post from "../views/Post";
-import Artesanias from "../views/Artesanias";
-import Belleza from "../views/Belleza";
-import Joyeria from "../views/Joyeria";
-import Musica from "../views/Musica";
-import Papeleria from "../views/Papeleria";
-import Vestuario from "../views/Vestuario";
-import Otros from "../views/Otros";
+import Tiendas from "../views/Tiendas";
 
 const Layout = () => {
     return <Router>
@@ -37,29 +31,11 @@ const Layout = () => {
                 <Route exact path="/categorias">
                     <Categories/>
                 </Route>
+                <Route exact path="/tiendas/:id">
+                    <Tiendas/>
+                </Route>
                 <Route exact path="/post">
                     <Post />
-                </Route>
-                <Route exact path="/Artesanía">
-                    <Artesanias/>
-                </Route>
-                <Route exact path="/Belleza">
-                    <Belleza/>
-                </Route>
-                <Route exact path="/Joyería">
-                    <Joyeria/>
-                </Route>
-                <Route exact path="/Música">
-                    <Musica/>
-                </Route>
-                <Route exact path="/Papelería">
-                    <Papeleria/>
-                </Route>
-                <Route exact path="/Vestuario y Calzado">
-                    <Vestuario/>
-                </Route>
-                <Route exact path="/Otros">
-                    <Otros/>
                 </Route>
                 <Route render={() => <h1>No encontrado</h1>}></Route>
             </Switch>

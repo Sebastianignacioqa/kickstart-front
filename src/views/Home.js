@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../image2.png';
+import { Link } from "react-router-dom";
 import '../styles/Home.css'
 import Carousel from '../components/Carousel';
 import SellerSpace from '../components/SellerSpace';
@@ -12,10 +13,10 @@ const Home = () => {
     <div className="container-btn">
         <div className="row">
             <div className= "col-6">
-                <a className="btn btn-primary leftbtn" href="/login">Ingreso Vendedor</a>
+                <Link className="btn btn-primary leftbtn" to="/login">Ingreso Vendedor</Link>
             </div>
             <div className= "col-6">
-                <a className="btn btn-primary rightbtn" href="/login2">Ingreso Comprador</a>
+                <Link className="btn btn-primary rightbtn" to="/login2">Ingreso Comprador</Link>
             </div>
         </div>  
     </div>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
     const { store, actions } = useContext(Context);
@@ -11,7 +12,7 @@ const Card = () => {
                     <h5 className="card-title">{category.name}</h5>
                     {console.log(category.name)}
                     <div>
-                        <a href={category.name} className="btn btn-primary mt-2">Ver tiendas</a>
+                        <Link to={`/tiendas/${category.id}`} className="btn btn-primary mt-2">Ver tiendas</Link>
                     </div>
                 </div>
             </div>)}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BuyerSpace = () => {
     return (
@@ -8,8 +9,8 @@ const BuyerSpace = () => {
             <p>¿Te gustaría hechar un vistazo?</p>
 
             <div className="d-grid gap-2 col-6 mx-auto">
-                <a className="btn btn-primary" href="/registrocomprador">Crear una cuenta y comenzar a mirar</a>
-                <a className="btn btn-primary" href="/categorias">Continuar como invitado</a>
+                <Link className="btn btn-primary" to="/registrocomprador">Crear una cuenta y comenzar a mirar</Link>
+                <Link className="btn btn-primary" to="/categorias">Continuar como invitado</Link>
             </div>
         </div>  
     )
