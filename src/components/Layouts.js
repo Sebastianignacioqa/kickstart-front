@@ -8,6 +8,7 @@ import FormBuyer from "../views/FormBuyer";
 import Categories from "../views/Categories";
 import Post from "../views/Post";
 import Tiendas from "../views/Tiendas";
+import ProfileTienda from "../views/ProfileTienda";
 
 const Layout = () => {
     return <Router>
@@ -33,6 +34,9 @@ const Layout = () => {
                 </Route>
                 <Route exact path="/tiendas/:id">
                     <Tiendas/>
+                </Route>
+                <Route exact path="/profiletienda">
+                    <ProfileTienda />
                 </Route>
                 <Route exact path="/post">
                     <Post />
