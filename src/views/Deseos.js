@@ -6,7 +6,7 @@ const Deseos = () => {
 
     
 
-    return (<div className="containter carrito">
+    return (<div className="container carrito">
         <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
         <table className="table">
             <thead>

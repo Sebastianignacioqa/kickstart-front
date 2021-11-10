@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect} from "react"
 import { Context } from '../store/appContext';
 import logo from '../image2.png';
 import '../styles/Post.css'
@@ -8,6 +8,13 @@ const Post = () => {
 
 const {store, actions} = useContext(Context)
 const history = useHistory();
+
+useEffect(() => {
+    console.log(store.product)
+    console.log(store.sellerID)
+    actions.getSellerID()
+
+}, [])
 
 return(<div className="container" >
         <img src={logo} className="img-fluid w-50 m-4" alt="kickstart"/><br></br><br></br>
@@ -19,9 +26,9 @@ return(<div className="container" >
         </div>
         <div className="col-6 form-group p-4">
             <label>Categoria</label>
-            <select placeholder="Seleccionar" class="form-select" id="inputGroupSelect01">
+            <select onChange={actions.handleChangeProduct} name="category_id" placeholder="Seleccionar" class="form-select" id="inputGroupSelect01">
             <option className="text-black-50">Seleccionar</option>
-                {store.categories.map((category, index) => <option required value={store.product.category} key={category.id}>{category.name}</option>)}
+                {store.categories.map((category, index) => <option required value={category.id} key={category.id}>{category.name}</option>)}
         </select>
         </div>
         <div className="col-6 form-group p-4">
@@ -39,7 +46,7 @@ return(<div className="container" >
         <div className="col-sm-12 form-group p-4 ">
             <label className="alert alert-info" role="alert">Selecciona las fotos para tu producto. Puedes subir un maximo de 5 fotos</label>
             <input type="file" name="file" className="col-sm-9 form-control-file btn btn-outline-secondary" multiple/>
-            <button onClick={actions.handleFileSubmit} className="col-sm-2 btn btn-primary m-2">Subir</button>
+            <button onClick={actions.handleFileSubmit, actions.getSellerID} className="col-sm-2 btn btn-primary m-2">Subir</button>
             <button type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
         </div>
     </div>

@@ -5,11 +5,13 @@ import TextField from './TextField';
 import { MySelect } from './MySelect';
 import { MyCheckbox } from './MyCheckbox';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
+
 
 
 export const SellerSignUp = () => {
     const { store, actions} = useContext(Context);
-
+    const history = useHistory();
     const validate = Yup.object({
         firstname: Yup.string()
           .max(50, 'Supera los caracteres permitidos.')
@@ -18,7 +20,7 @@ export const SellerSignUp = () => {
           .max(50, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
         rut: Yup.string()
-          .min(11, 'Debe ingresar un rut válido.')
+          .min(9, 'Debe ingresar un rut válido.')
           .max(12, 'Supera los caracteres permitidos.')
           .required('Campo requerido.'),
         email: Yup.string()
@@ -33,7 +35,7 @@ export const SellerSignUp = () => {
           .required('Campo requerido.'),
         phonenumber: Yup.string()
           .min(9, 'Debe ingresar un número válido de 9 dígitos.')
-          .max(9, 'Debe ingresar un número válido de 9 dígitos.')
+          .max(12, 'Debe ingresar un número válido de 12 dígitos.')
           .required('Campo requerido.'),
         storename: Yup.string()
           .max(30)
@@ -65,7 +67,7 @@ export const SellerSignUp = () => {
             }}
             validationSchema={validate}
             onSubmit={values => {
-              actions.getSignUp(values);
+              actions.getSignUp(values, history);
             }}>
             {formik => (
                 <div>
@@ -74,11 +76,11 @@ export const SellerSignUp = () => {
                     <Form>
                         <TextField label="Nombre" name="firstname" type="text" />
                         <TextField label="Apellidos" name="lastname" type="text" />
-                        <TextField label="RUT" name="rut" type="text" placeholder="Ej: 12.345.678-9" />
+                        <TextField label="RUT" name="rut" type="text" placeholder="Ej: 12345678-9" />
                         <TextField label="Email" name="email" type="email" />
                         <TextField label="Contraseña" name="password" type="password" placeholder="Mínimo 8 caracteres" />
                         <TextField label="Dirección" name="address" type="text" placeholder="Comuna, Región" />
-                        <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" />
+                        <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 12 dígitos" />
                         <TextField label="Nombre de la tienda" name="storename" type="text" />
                         <TextField label="Red social de la tienda" name="link" type="text" placeholder="Link de Instagram o Facebook" />
                         <MySelect label="Categorías" name="category_id" className="form-select shadow-none">

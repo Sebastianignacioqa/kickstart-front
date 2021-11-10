@@ -19,7 +19,9 @@ const injectContext = PassedComponent => {
 
         useEffect(() => {
             state.actions.getCategories()
+            
         }, [])
+        
 
         return (
             <Context.Provider value={state}>
