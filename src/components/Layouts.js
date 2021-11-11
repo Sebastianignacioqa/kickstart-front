@@ -4,12 +4,14 @@ import Login from "../views/Login";
 import Home from "../views/Home";
 import Login2 from "../views/Login2";
 import Post from "../views/Post";
-import Profile from "../views/Profile";
 import PrivateRoute from "./PrivateRoute";
 import Deseos from "../views/Deseos";
 import Tienda from "../views/Tienda";
 import FormSeller from "../views/FormSeller";
 import FormBuyer from "../views/FormBuyer";
+import Tiendas from "../views/Tiendas";
+import Categories from "../views/Categories";
+import ProfileTienda from "../views/ProfileTienda";
 
 const Layout = () => {
     return <Router>
@@ -36,12 +38,17 @@ const Layout = () => {
                 <Route exact path="/registrocomprador">
                     <FormBuyer />
                 </Route>
-                <Route exact path="/product">
-                    <Post />
+                <Route exact path="/profiletienda">
+                    <ProfileTienda />
                 </Route>
-                <PrivateRoute exact path="/profile"component={()=> <Profile/>}/>
+                <Route exact path="/categorias">
+                    <Categories />
+                </Route>
+                <Route exact path="/tiendas/:id">
+                    <Tiendas />
+                </Route>
+                <PrivateRoute exact path="/post"component={()=> <Post/>}/>
                 <Route render={() => <h1>No encontrado</h1>}>
-
                 </Route>
             </Switch>
         </div>

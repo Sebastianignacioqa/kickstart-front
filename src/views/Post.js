@@ -12,8 +12,6 @@ const history = useHistory();
 useEffect(() => {
     console.log(store.product)
     console.log(store.sellerID)
-    actions.getSellerID()
-
 }, [])
 
 return(<div className="container" >
@@ -46,7 +44,7 @@ return(<div className="container" >
         <div className="col-sm-12 form-group p-4 ">
             <label className="alert alert-info" role="alert">Selecciona las fotos para tu producto. Puedes subir un maximo de 5 fotos</label>
             <input type="file" name="file" className="col-sm-9 form-control-file btn btn-outline-secondary" multiple/>
-            <button onClick={actions.handleFileSubmit, actions.getSellerID} className="col-sm-2 btn btn-primary m-2">Subir</button>
+            <button onClick={actions.handleFileSubmit} className="col-sm-2 btn btn-primary m-2">Subir</button>
             <button type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
         </div>
     </div>

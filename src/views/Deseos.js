@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import logo from '../image.png';
 import '../styles/Deseos.css'
+import { Context } from '../store/appContext'
+import { useEffect } from 'react';
+
 
 const Deseos = () => {
 
-    
+    const {store, actions} = useContext(Context)
 
     return (<div className="container carrito">
         <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
@@ -19,29 +22,11 @@ const Deseos = () => {
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{store.productos.map((product, index) => <option required value={product.id} key={product.id}>{product.id}</option>)}</th>
                     <img src={logo} className="imagen" alt="kickstart" />  
-                    <td className= "tableproduct">Ejemplo articulo 1</td>
-                    <td className = "tableprice"><p>$5000</p></td>
-                    <td classname><input className="amount" type="number" min="1" value="1"/>
-                    <button className="delete btn btn-danger">x</button>
-                    </td>
-                </tr>
-                <tr>
-                <th scope="row">1</th>
-                    <td className= "tableproduct">Ejemplo icono Kickstart</td>
-                    <img src={logo} className="imagen" alt="kickstart" />   
-                    <td className = "tableprice"><p>$5000</p></td>
-                    <td classname><input className="amount" type="number" min="1" value="1"/>
-                    <button className="delete btn btn-danger">x</button>
-                    </td>
-                </tr>
-                <tr>
-                <th scope="row">1</th>
-                    <td className= "tableproduct">Ejemplo icono Kickstart</td>
-                    <img src={logo} className="imagen" alt="kickstart" />   
-                    <td className = "tableprice"><p>$5000</p></td>
-                    <td classname><input className="amount" type="number" min="1" value="1"/>
+                    <td className= "tableproduct">{store.productos.map((product, index) => <option required value={product.id} key={product.id}>{product.item_title}</option>)}</td>
+                    <td className = "tableprice"><p>{store.productos.map((product, index) => <option required value={product.id} key={product.id}>{product.item_price}</option>)}</p></td>
+                    <td><input className="amount" type="number" min="1" value="1"/>
                     <button className="delete btn btn-danger">x</button>
                     </td>
                 </tr>
@@ -50,7 +35,7 @@ const Deseos = () => {
         <br></br><br></br>
         <div className="row mx-4">
             <div className="col">
-                <h3 className="carttotal">Total: $15000 </h3>
+                <h3 className="carttotal">Total: $ </h3>
             </div>
             <div className="col d-flex justify content-end"></div>
             <button className="btn btn-primary">Ir a pagar</button>

@@ -21,9 +21,11 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 acceptedTerms: ''
             },
             tiendas: [],
-            favorites: [],
+            favoritos: [],
             categories: [],
             value: [],
+            productos: [],
+            categoria:[],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID"))
@@ -49,7 +51,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         if (data.msg === "User login success") {
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
-                            history.push("/profile")
+                            history.push("/post")
                             
                         }
                     })
@@ -86,7 +88,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
                             localStorage.setItem("sellerID", JSON.stringify(data.seller))
-                            history.push("/profile")
+                            history.push("/post")
                         
                         }
                         else console.log(data)
@@ -138,7 +140,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     })
                     .then(data => {
                         console.log(data)
-                        history.push("/tienda")
+                        history.push("/profiletienda")
                     })
                     .catch(error => {
 
@@ -205,8 +207,44 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 const store = getStore();
                 store.product.sellerID = JSON.stringify(store.sellerID.id)
             },
+            getProducts: () => {
+                fetch('http://localhost:8080/product', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then (data => setStore({productos: data}))
+            },
 
-        },
+            showTienda: (category_id) => {
+                const store = getStore();
+                fetch('http://localhost:8080/categorias', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({categoria: category_id})
+                }).then (res => res.json())
+                .then ((data) => setStore({tiendas: data}))
+            },
+
+            deleteElement: (nombre) => {
+                const store = getStore()
+                setStore({favoritos: store.favoritos.filter((i, index)=> {
+                    if(index === nombre){
+                        return false
+                    } else {
+                       return true
+                    }
+                })})},
+    
+            addFav: (index) => {
+                console.log(index, "Probando agregar a favoritos")
+                const store = getStore()
+                setStore({favoritos: store.favoritos.concat(index)})
+    
+            }
+        }
     }
 }
-
