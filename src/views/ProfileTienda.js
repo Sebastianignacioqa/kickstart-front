@@ -11,7 +11,7 @@ const ProfileTienda = () => {
     return (
         <div>
             <img className="img-fluid mb-3" src={logo} alt=""/>
-            <h2>{"{storename}"}</h2>
+            <h2>Hello!</h2>
             <CardArticulo/>
             <CardArticulo/>
             <CardArticulo/>

@@ -28,7 +28,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
             categoria:[],
 
             isAuth: localStorage.getItem("isAuth"),
-            sellerID: JSON.parse(localStorage.getItem("sellerID"))
+            sellerID: JSON.parse(localStorage.getItem("sellerID")),
+            buyerID: JSON.parse(localStorage.getItem("sellerID"))
         },
         actions: {
 
@@ -51,7 +52,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         if (data.msg === "User login success") {
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
-                            history.push("/post")
+                            history.push("/categorias")
+                            localStorage.setItem("buyerID", JSON.stringify(data.buyer))
                             
                         }
                     })
@@ -88,6 +90,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
                             localStorage.setItem("sellerID", JSON.stringify(data.seller))
+                            
                             history.push("/post")
                         
                         }
@@ -140,7 +143,9 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     })
                     .then(data => {
                         console.log(data)
+                        
                         history.push("/profiletienda")
+                        
                     })
                     .catch(error => {
 
@@ -166,7 +171,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     console.log(error)
                 })
             },
-            getSignUp2: (values) => {
+            getSignUp2: (values, history) => {
                 const store = getStore();
                 fetch('http://localhost:8080/registrocomprador', {
                     method: "POST",
@@ -180,6 +185,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 })
                 .then(data => {
                     console.log(data);
+                    history.push("/login2")
                 })
                 .catch(error => {
                     console.log(error);
@@ -188,9 +194,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
             },
             handleChangeProduct: (evento) => {
                 const { product } = getStore();
-                product[evento.target.name] = evento.target.value;
                 setStore({
-                    product
+                    product: { ...product, [evento.target.name]: evento.target.value }
                 })
                 console.log(evento.target.value)
             },
@@ -207,6 +212,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 const store = getStore();
                 store.product.sellerID = JSON.stringify(store.sellerID.id)
             },
+            
             getProducts: () => {
                 fetch('http://localhost:8080/product', {
                     method: "GET",

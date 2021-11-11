@@ -47,6 +47,9 @@ const Layout = () => {
                 <Route exact path="/tiendas/:id">
                     <Tiendas />
                 </Route>
+                <Route exact path="/post">
+                    <Post />
+                </Route>
                 <PrivateRoute exact path="/post"component={()=> <Post/>}/>
                 <Route render={() => <h1>No encontrado</h1>}>
                 </Route>
