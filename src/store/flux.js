@@ -140,6 +140,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 }).then (res => res.json())
                 .then (data => setStore({categories: data}))
             },
+            
             showTienda: (category_id) => {
                 const store = getStore();
                 fetch('http://localhost:8080/categorias', {
