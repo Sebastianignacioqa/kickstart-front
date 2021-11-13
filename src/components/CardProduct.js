@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
+import { Context } from '../store/appContext';
 
 const CardProduct = () => {
 
+    const { store, actions } = useContext(Context);
+    useEffect(() => {
+        console.log(store.productos)
+    }, [])
+
     return (
+        
         <div className="container">
-            <div className="card mx-auto mt-4" style={{ width: "22em" }}>
-                <img src="https://asdeimagen.com/wp-content/uploads/2020/07/Polera-negra-hombre-4.jpeg?x77271" className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h4 className="card-title mb-4">Nombre del producto</h4>
+            {store.productos.map((producto, index) => <div className="card mx-auto mt-4" style={{ width: "22em" }} key={index}>
+                <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" className="card-img-top" alt="..." />
+                <div className="card-body"> 
+                    <h4 className="card-title mb-4">{producto.item_title}</h4>
                     <div className="accordion accordion-flush" id="accordionFlushExample">
                         <div className="accordion-item">
                             <h5 className="accordion-header" id="flush-headingOne">
@@ -17,12 +24,12 @@ const CardProduct = () => {
                                 </button>
                             </h5>
                             <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div className="accordion-body">Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto Descripción del producto </div>
+                                <div className="accordion-body">{producto.item_description}</div>
                             </div>
                         </div>
                     </div>
-                    <h4 className="my-2">$10000</h4>
-                    <p className="my-3">Stock: 20</p>
+                    <h4 className="my-2">${producto.item_price}</h4>
+                    <p className="my-3">Stock: {producto.item_stock}</p>
 
                     <div className="row">
                         <div className="col-12 col-sm-12">
@@ -35,16 +42,16 @@ const CardProduct = () => {
                                 <div className="offcanvas-body">
                                     <div className="row">
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://asdeimagen.com/wp-content/uploads/2020/07/Polera-negra-hombre-4.jpeg?x77271" alt="..." />
+                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://asdeimagen.com/wp-content/uploads/2020/07/Polera-negra-hombre-4.jpeg?x77271" alt="..." />
+                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://asdeimagen.com/wp-content/uploads/2020/07/Polera-negra-hombre-4.jpeg?x77271" alt="..." />
+                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://asdeimagen.com/wp-content/uploads/2020/07/Polera-negra-hombre-4.jpeg?x77271" alt="..." />
+                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +60,7 @@ const CardProduct = () => {
                     </div>
                     <Link to="#" className="btn btn-primary">Agregar al carrito</Link>
                 </div>
-            </div>
+            </div>)}
         </div>
     )
 };

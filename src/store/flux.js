@@ -1,8 +1,12 @@
+import { data } from "jquery";
+
+
 export const getState = ({ setStore, getStore, getActions }) => {
 
     return {
         store: {
             login: { rut: "", password: "" },
+            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID:""},
             signUpForm: {
                 firstname: '',
                 lastname: '',
@@ -18,34 +22,23 @@ export const getState = ({ setStore, getStore, getActions }) => {
             },
             tiendas: [],
             favoritos: [],
-            categories: []
+            categories: [],
+            value: [],
+            productos: [],
+            categoria:[],
+
+            isAuth: localStorage.getItem("isAuth"),
+            sellerID: JSON.parse(localStorage.getItem("sellerID")),
+            buyerID: JSON.parse(localStorage.getItem("sellerID"))
         },
         actions: {
-            getLogin: () => {
-                const store = getStore();
-                fetch('http://localhost:8080/login', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": 'application/json',
-                    },
-                    body: JSON.stringify(store.login)
-                })
-                    .then(resp => {
-                        return resp.json();
-                    })
-                    .then(data => {
-                        console.log("Logeo exisoto!", data);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-            },
 
-            getLogin2: () => {
+            handleSubmitLogin2: (evento, history) => {
+                evento.preventDefault()
                 const store = getStore();
                 fetch('http://localhost:8080/login2', {
                     method: "POST",
+                    mode: "cors",
                     headers: {
                         "Content-Type": "application/json",
                         "Accept": 'application/json',
@@ -56,7 +49,13 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         return resp.json();
                     })
                     .then(data => {
-                        console.log("Logeo exisoto!", data);
+                        if (data.msg === "User login success") {
+                            localStorage.setItem("isAuth", JSON.stringify(true));
+                            localStorage.setItem("access_token", JSON.stringify(data.access_token))
+                            history.push("/categorias")
+                            localStorage.setItem("buyerID", JSON.stringify(data.buyer))
+                            
+                        }
                     })
                     .catch(error => {
 
@@ -64,22 +63,101 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     })
             },
 
-            handleChange: (e) => {
+            handleChangeLogin: (evento) => {
                 const { login } = getStore();
                 setStore({
-                    login: { ...login, [e.target.name]: e.target.value },
+                    login: { ...login, [evento.target.name]: evento.target.value }
                 })
             },
+            handleSubmitLogin1: (evento, history) => {
+                evento.preventDefault()
+                const store = getStore();
+                fetch('http://localhost:8080/login', {
+                    method: "POST",
+                    mode: "cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.login)
+                })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        if (data.msg === "User login success") {
+                            console.log(data)
+                            localStorage.setItem("isAuth", JSON.stringify(true));
+                            localStorage.setItem("access_token", JSON.stringify(data.access_token))
+                            localStorage.setItem("sellerID", JSON.stringify(data.seller))
+                            
+                            history.push("/post")
+                        
+                        }
+                        else console.log(data)
+                    })
+                    .catch(error => {
 
-            handleSubmit: (e) => {
-                e.preventDefault();
-                const store = getStore()
-                console.log(store.login);
+                        console.log(error);
+                    })
             },
 
-            getSignUp: (values) => {
+            handleFileSubmit: (evento) => {
+                evento.preventDefault();
+                const store = getStore()
+                const input = document.querySelector('input[type="file"]')
+                const data = new FormData()
+                for (let i in input.files) {
+                    data.append('file', input.files[i])
+                }
+                data.append('item_title', store.product.item_title)
+                data.append('item_description', store.product.item_description)
+                data.append('item_stock', store.product.item_stock)
+                data.append('item_price', store.product.item_price)
+                data.append('category', store.product.category)
+                data.append('user', 'hubot')
+                console.log(data)
+                fetch('http://localhost:8080/post', {
+                    "mode": "no-cors",
+                    method: 'POST',
+                    body: data
+                })
+                    
+            },
+            
+            handlePostSubmit: (evento, history) => {
+                evento.preventDefault();
+                const store = getStore()
+                console.log(data)
+                
+                fetch('http://localhost:8080/product', {
+                    "mode": "cors",
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
+                    body: JSON.stringify(store.product)
+                })
+                    .then(resp => {
+                        return resp.json();
+                    })
+                    .then(data => {
+                        console.log(data)
+                        
+                        history.push("/profiletienda")
+                        
+                    })
+                    .catch(error => {
+
+                        console.log(error);
+                    })
+            },
+
+            getSignUp: (values, history) => {
                 const store = getStore();
                 fetch("http://localhost:8080/registrotienda", {
+                    mode: "cors",
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -89,12 +167,14 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 .then(resp => resp.json())
                 .then(data => {
                     console.log(data)
+                    history.push("/login")
                 })
                 .catch(error => {
                     console.log(error)
                 })
             },
-            getSignUp2: (values) => {
+
+            getSignUp2: (values, history) => {
                 const store = getStore();
                 fetch('http://localhost:8080/registrocomprador', {
                     method: "POST",
@@ -108,27 +188,20 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 })
                 .then(data => {
                     console.log(data);
+                    history.push("/login2")
                 })
                 .catch(error => {
                     console.log(error);
 
                 })
             },
-            handlePostSubmit: (e) => {
-                e.preventDefault();
-                const input = document.querySelector('input[type="file"]')
-                const data = new FormData()
-                for (let i in input.files) {
-                    data.append('file', input.files[i])
-                }
-                /* data.append('file', input.files) */
-                data.append('user', 'hubot')
-                console.log(data)
-                fetch('http://localhost:8080/post', {
-                "mode": "no-cors",
-                method: 'POST',
-                body: data
+
+            handleChangeProduct: (evento) => {
+                const { product } = getStore();
+                setStore({
+                    product: { ...product, [evento.target.name]: evento.target.value }
                 })
+                console.log(evento.target.value)
             },
 
             getCategories: () => {
@@ -140,7 +213,22 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 }).then (res => res.json())
                 .then (data => setStore({categories: data}))
             },
+
+            getSellerID: () => {
+                const store = getStore();
+                store.product.sellerID = JSON.stringify(store.sellerID.id)
+            },
             
+            getProducts: () => {
+                fetch('http://localhost:8080/product', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then (data => setStore({productos: data}))
+            },
+
             showTienda: (category_id) => {
                 const store = getStore();
                 fetch('http://localhost:8080/categorias', {
