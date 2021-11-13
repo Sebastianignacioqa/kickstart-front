@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { Context } from '../store/appContext';
 
+
 const CardProduct = () => {
 
     const { store, actions } = useContext(Context);
@@ -58,7 +59,7 @@ const CardProduct = () => {
                             </div>
                         </div>
                     </div>
-                    <Link to="#" className="btn btn-primary">Agregar al carrito</Link>
+                    <button onClick={() => actions.addProduct(producto.item_title + producto.item_price)} className="btn btn-primary">Agregar al carrito</button>
                 </div>
             </div>)}
         </div>

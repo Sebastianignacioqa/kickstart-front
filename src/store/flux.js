@@ -6,7 +6,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
     return {
         store: {
             login: { rut: "", password: "" },
-            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID:""},
+            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID: ""},
             signUpForm: {
                 firstname: '',
                 lastname: '',
@@ -26,11 +26,13 @@ export const getState = ({ setStore, getStore, getActions }) => {
             value: [],
             productos: [],
             categoria:[],
+            wishlist: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
             buyerID: JSON.parse(localStorage.getItem("sellerID"))
         },
+
         actions: {
 
             handleSubmitLogin2: (evento, history) => {
@@ -256,7 +258,22 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 const store = getStore()
                 setStore({favoritos: store.favoritos.concat(index)})
     
-            }
+            },
+
+            addProduct: (index) => {
+                const store = getStore()
+                setStore({wishlist: store.wishlist.concat(index)})
+            },
+
+            deleteProduct: (nombre) => {
+                const store = getStore()
+                setStore({wishlist: store.wishlist.filter((i, index)=> {
+                    if(index === nombre){
+                        return false
+                    } else {
+                       return true
+                    }
+                })})},
         }
     }
 }
