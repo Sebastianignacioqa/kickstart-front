@@ -8,9 +8,9 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-    return(<div className="container">
+    return(<div className="container-fluid">
     <img src={logo} className="img-fluid w-50" alt="kickstart"/><br></br><br></br>
-    <div className="container-btn">
+    <div className="container-fluid">
         <div className="row">
             <div className= "col-6">
                 <Link className="btn btn-primary leftbtn" to="/login">Ingreso Vendedor</Link>

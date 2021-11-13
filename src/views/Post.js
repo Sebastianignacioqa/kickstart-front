@@ -44,11 +44,28 @@ return(<div className="container" >
         <div className="col-sm-12 form-group p-4 ">
             <label className="alert alert-info" role="alert">Selecciona las fotos para tu producto. Puedes subir un maximo de 5 fotos</label>
             <input type="file" name="file" className="col-sm-9 form-control-file btn btn-outline-secondary" multiple/>
-            <button onClick={actions.handleFileSubmit} className="col-sm-2 btn btn-primary m-2">Subir</button>
-            <button type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
+            <button onClick={actions.handleFileSubmit} data-bs-toggle="modal" data-bs-target="#exampleModal" className="col-sm-2 btn btn-primary m-2">Subir</button>
+            <button onClick ={actions.getSellerID} type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <h1>Archivos guardados exitosamente!</h1>
+            </div>
+        <div className="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
     </div>
-</form></div>)
+</form>
+    
+</div>)
 
 }
 

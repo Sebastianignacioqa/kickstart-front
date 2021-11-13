@@ -20,7 +20,7 @@ const injectContext = PassedComponent => {
         useEffect(() => {
             state.actions.getCategories()
             state.actions.getProducts()
-            state.actions.getSellerID()
+            
             
         }, [])
         

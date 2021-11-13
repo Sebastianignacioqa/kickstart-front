@@ -38,7 +38,7 @@ return (<div className="container">
                     <label className ="form-check-label" name="exampleCheck1">Mantener sesión</label>
             </div> 
             <div  id="emailHelp" className ="form-text">Nunca compartiremos tus datos con nadie.</div><br></br>
-             <button type="submit" className="btn btn-primary">Entrar</button>
+             <button className = {actions.getSellerID} type="submit" className="btn btn-primary">Entrar</button>
         </form>
         </div>
         </div>)

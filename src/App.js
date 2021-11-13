@@ -4,8 +4,8 @@ import injectContext from './store/appContext';
 
 function App() {
   return (
-    <div className="App">
-      <div className="container-fluid">
+    <div className="container-fluid">
+    <div className="App container-fluid">
       <Layout />
       </div>
     </div>

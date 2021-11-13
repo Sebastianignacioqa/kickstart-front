@@ -14,8 +14,9 @@ import Categories from "../views/Categories";
 import ProfileTienda from "../views/ProfileTienda";
 
 const Layout = () => {
-    return <Router>
-        <div className="container">
+    return (
+    <div className="container-fluid">
+        <Router>
             <Switch>
                 <Route exact path="/">
                     <Home />
@@ -54,7 +55,8 @@ const Layout = () => {
                 <Route render={() => <h1>No encontrado</h1>}>
                 </Route>
             </Switch>
+            </Router>
         </div>
-    </Router>
-}
+    
+    )}
 export default Layout;

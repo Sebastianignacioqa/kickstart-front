@@ -26,6 +26,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
             value: [],
             productos: [],
             categoria:[],
+            wishlist: [],
+            carrito: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
@@ -210,7 +212,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
             },
             getSellerID: () => {
                 const store = getStore();
-                store.product.sellerID = JSON.stringify(store.sellerID.id)
+                const sellerIDstore = JSON.stringify(store.sellerID.id)
+                store.product.sellerID = sellerIDstore
             },
             
             getProducts: () => {
