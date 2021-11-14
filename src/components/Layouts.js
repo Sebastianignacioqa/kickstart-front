@@ -9,6 +9,7 @@ import Categories from "../views/Categories";
 import Post from "../views/Post";
 import Tiendas from "../views/Tiendas";
 import ProfileTienda from "../views/ProfileTienda";
+import Deseos from "../views/Deseos";
 
 const Layout = () => {
     return <Router>
@@ -40,6 +41,9 @@ const Layout = () => {
                 </Route>
                 <Route exact path="/post">
                     <Post />
+                </Route>
+                <Route exact path="/deseos">
+                    <Deseos />
                 </Route>
                 <Route render={() => <h1>No encontrado</h1>}></Route>
             </Switch>
