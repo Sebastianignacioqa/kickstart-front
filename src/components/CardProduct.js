@@ -59,7 +59,7 @@ const CardProduct = () => {
                             </div>
                         </div>
                     </div>
-                    <button onClick={() => actions.addProduct(producto.item_title + producto.item_price)} className="btn btn-primary">Agregar al carrito</button>
+                    <button onClick={() => actions.addProduct(producto)} className="btn btn-primary">Agregar al carrito</button>
                 </div>
             </div>)}
         </div>

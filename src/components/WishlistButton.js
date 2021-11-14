@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
-import { Link } from 'react-router-dom';
 
 const WishlistButton = () => {
 
     const { store, actions } = useContext(Context)
+    {console.log(store.wishlist)}
 
     return (
         <div>
@@ -17,8 +17,8 @@ const WishlistButton = () => {
                 </div>
                 <div className="offcanvas-body">
                     {<ul>
-                        {store.wishlist.map((item, index) => { 
-                            return <li className="dropdown-item" key={index}>{item}<button className="btn-sm btndel btn-primary w-2 h-2 mx-2" onClick={() => actions.deleteProduct(index)}>X</button></li>})}
+                        {store.wishlist.map((wish, index) => { 
+                            return <li className="dropdown-item" key={index}>{wish.id} {wish.item_title} ${`${wish.item_price}`}<button className="btn-sm btndel btn-primary w-2 h-2 mx-2" onClick={() => actions.deleteProduct(index)}>X</button></li>})}
                     </ul>}
                 </div>
             </div>
