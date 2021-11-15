@@ -19,7 +19,7 @@ const Tiendas = () => {
                 <div className="card-body">
                     <h5 className="card-title">{nombretienda}</h5>
                     <div>
-                        <Link to="/categorias" className="btn btn-primary mt-1 mx-1">Ver tienda</Link>
+                        <Link to="/profiletienda" className="btn btn-primary mt-1 mx-1">Ver tienda</Link>
                         <button className="btn btn-primary mt-4 mx-1 btnfav" onClick={() => actions.addFav(nombretienda)}>Fav ♥</button>
                     </div>
                 </div>

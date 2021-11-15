@@ -9,10 +9,8 @@ const Deseos = () => {
 
     const {store, actions} = useContext(Context);
     
-    useEffect(() => {
-        console.log(store.productos)
-        console.log(store.categories)
-    }, [])
+    const total = store.wishlist.reduce((sum, value) => (typeof value.item_price == "number" ? sum + value.item_price : sum), 0);
+    console.log(total);
 
     return (<div className="container carrito">
         <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
@@ -40,7 +38,7 @@ const Deseos = () => {
         <br></br><br></br>
         <div className="row mx-4">
             <div className="col">
-                <h3 className="carttotal">Total: $</h3>
+                <h3 className="carttotal">Total: ${total}</h3>
             </div>
             <div className="col d-flex justify content-end"></div>
             <button className="btn btn-primary">Ir a pagar</button>

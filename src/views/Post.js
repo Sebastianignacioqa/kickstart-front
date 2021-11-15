@@ -9,35 +9,30 @@ const Post = () => {
 const {store, actions} = useContext(Context)
 const history = useHistory();
 
-useEffect(() => {
-    console.log(store.product)
-    console.log(store.sellerID)
-    console.log(store.storename)
-}, [])
 
 return(<div className="container" >
-        <img src={logo} className="img-fluid w-50 m-4" alt="kickstart"/><br></br><br></br>
+        <img src={logo} className="img-fluid w-75 m-4" alt="kickstart"/><br></br><br></br>
         <Link to="/login" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
 <form onSubmit={(evento) => actions.handlePostSubmit(evento, history)}  encType="multipart/form-data" method="POST" classname="postform">
     <div className="row">
-        <div className="col-6 form-group p-4">
-            <label>Nombre del producto</label>
-            <input onChange={actions.handleChangeProduct} type="text" name="item_title" placeholder="Producto" className="form-control" required  value={store.product.item_title}/>
+        <div className="col-6 form-group p-4"><br></br><br></br>
+            <label>Producto</label>
+            <input onChange={actions.handleChangeProduct} type="text" name="item_title" placeholder="Nombre" className="form-control" required  value={store.product.item_title}/>
         </div>
-        <div className="col-6 form-group p-4">
+        <div className="col-6 form-group p-4"><br></br><br></br>
             <label>Categoria</label>
-            <select onChange={actions.handleChangeProduct} name="category_id" placeholder="Seleccionar" class="form-select" id="inputGroupSelect01">
-            <option className="text-black-50">Seleccionar</option>
+            <select onChange={actions.handleChangeProduct} name="category_id" placeholder="Lista" class="form-select" id="inputGroupSelect01">
+            <option className="text-black-50">Lista</option>
                 {store.categories.map((category, index) => <option required value={category.id} key={category.id}>{category.name}</option>)}
         </select>
         </div>
-        <div className="col-6 form-group p-4">
+        <div className="col-6 form-group p-4"><br></br>
             <label>Precio</label>
             <input onChange={actions.handleChangeProduct} type="text" name="item_price" placeholder="$" className="form-control" required  value={store.product.item_price}/>
         </div>
         <div className="col-6 form-group p-4">
             <label>Stock disponible</label>
-            <input onChange={actions.handleChangeProduct} type="text" name="item_stock" placeholder="Unidades en stock" className="form-control" required  value={store.product.item_stock}/>
+            <input onChange={actions.handleChangeProduct} type="text" name="item_stock" placeholder="UN" className="form-control" required  value={store.product.item_stock}/>
         </div>
         <div className="col-12 form-group">
             <label>Descripcion</label>
@@ -45,9 +40,9 @@ return(<div className="container" >
         </div>
         <div className="col-sm-12 form-group p-4 ">
             <label className="alert alert-info" role="alert">Selecciona las fotos para tu producto. Puedes subir un maximo de 5 fotos</label>
-            <input type="file" name="file" className="col-sm-9 form-control-file btn btn-outline-secondary" multiple/>
+            <input type="file" name="file" className="col-8 ps-3 pe-2 form-control-file btn btn-outline-secondary" multiple/>
             <button onClick={actions.handleFileSubmit} data-bs-toggle="modal" data-bs-target="#exampleModal" className="col-sm-2 btn btn-primary m-2">Subir</button>
-            <button onClick ={actions.getSellerID} type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
+            <button type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">

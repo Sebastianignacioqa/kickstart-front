@@ -1,5 +1,5 @@
 
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useParams } from 'react';
 import { Context } from '../store/appContext';
 import CardProduct from '../components/CardProduct';
 import { Link } from "react-router-dom";
@@ -8,7 +8,9 @@ import WishlistButton from '../components/WishlistButton';
 
 
 const ProfileTienda = () => {
+
     const {store, actions} = useContext(Context);
+    
 
     return (
         <div className="container">

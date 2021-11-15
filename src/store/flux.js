@@ -1,6 +1,3 @@
-import { data } from "jquery";
-
-
 export const getState = ({ setStore, getStore, getActions }) => {
 
     return {
@@ -28,6 +25,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
             categoria:[],
             wishlist: [],
             storename: [],
+            profiletienda: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
@@ -57,6 +55,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
                             history.push("/categorias")
                             localStorage.setItem("buyerID", JSON.stringify(data.buyer))
+                            
                             
                         }
                     })
@@ -93,7 +92,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
                             localStorage.setItem("sellerID", JSON.stringify(data.seller))
-                            
+                            setStore({sellerID: data.seller.id})
+                            setStore({product: {...store.product, sellerID:data.seller.id}})
                             history.push("/post")
                         
                         }
@@ -131,7 +131,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
             handlePostSubmit: (evento, history) => {
                 evento.preventDefault();
                 const store = getStore()
-                console.log(data)
+                
                 
                 fetch('http://localhost:8080/product', {
                     "mode": "cors",
@@ -216,11 +216,6 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 }).then (res => res.json())
                 .then (data => setStore({categories: data}))
             },
-
-            getSellerID: () => {
-                const store = getStore();
-                store.product.sellerID = JSON.stringify(store.sellerID.id)
-            },
             
             getProducts: () => {
                 fetch('http://localhost:8080/product', {
@@ -252,6 +247,18 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     body: JSON.stringify({categoria: category_id})
                 }).then (res => res.json())
                 .then ((data) => setStore({tiendas: data}))
+            },
+
+            showProfile: (id) => {
+                const store = getStore();
+                fetch('http://localhost:8080/profiletienda', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({profiletienda: id})
+                }).then (res => res.json())
+                .then ((data) => setStore({profiletienda: data}))
             },
 
             deleteElement: (nombre) => {
