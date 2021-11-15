@@ -2,7 +2,7 @@ import React, { useContext, useEffect} from "react"
 import { Context } from '../store/appContext';
 import logo from '../image2.png';
 import '../styles/Post.css'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Post = () => {
 
@@ -16,6 +16,7 @@ useEffect(() => {
 
 return(<div className="container" >
         <img src={logo} className="img-fluid w-50 m-4" alt="kickstart"/><br></br><br></br>
+        <Link to="/login" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
 <form onSubmit={(evento) => actions.handlePostSubmit(evento, history)}  encType="multipart/form-data" method="POST" classname="postform">
     <div className="row">
         <div className="col-6 form-group p-4">

@@ -1,7 +1,5 @@
-const ProductItem = () => {
+const ProductItem = ({data, addToCart}) => {
     return (
-        <div>
-            
-        </div>
+        <div>Producto</div>
     )
 }

@@ -21,7 +21,6 @@ const injectContext = PassedComponent => {
             state.actions.getCategories()
             state.actions.getProducts()
             
-            
         }, [])
         
 

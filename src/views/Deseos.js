@@ -15,6 +15,7 @@ const Deseos = () => {
     }, [])
 
     return (<div className="container carrito">
+        <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
         <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
         <h1>{store.tienda}</h1>
         <table className="table">
@@ -28,10 +29,10 @@ const Deseos = () => {
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row" className="pt-3">{store.productos.map((product, index) => <option required value={product.id} key={product.id}>{product.id}</option>)}</th>
-                    <td className= "tableproduct"><p>{store.productos.map((product, index) => <option required value={product.id} key={product.id}>{product.item_title}</option>)}</p></td>
-                    <td className = "tableprice pt-3"><p>{store.productos.map((product, index) => <option required value={product.id} key={product.id}>${product.item_price}</option>)}</p></td>
-                    <td className="pt-3">{store.productos.map((product, index) => <option required value={product.id} key={product.id}>1</option>)}</td>
+                    <th scope="row" className="pt-3">{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>{product.id}</option>)}</th>
+                    <td className= "tableproduct"><p>{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>{product.item_title}</option>)}</p></td>
+                    <td className = "tableprice pt-3"><p>{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>${product.item_price}</option>)}</p></td>
+                    <td className="pt-3">{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>1</option>)}</td>
                     <button className="delete btn btn-danger mt-3 ms-6 px-1">x</button>
                 </tr>
             </tbody>
@@ -49,4 +50,4 @@ const Deseos = () => {
 
 }
 
-export default Deseos
+export default Deseos;

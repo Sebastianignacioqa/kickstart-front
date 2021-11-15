@@ -6,7 +6,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
     return {
         store: {
             login: { rut: "", password: "" },
-            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID:""},
+            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID: ""},
             signUpForm: {
                 firstname: '',
                 lastname: '',
@@ -27,12 +27,12 @@ export const getState = ({ setStore, getStore, getActions }) => {
             productos: [],
             categoria:[],
             wishlist: [],
-            carrito: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
             buyerID: JSON.parse(localStorage.getItem("sellerID"))
         },
+
         actions: {
 
             handleSubmitLogin2: (evento, history) => {
@@ -126,6 +126,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 })
                     
             },
+            
             handlePostSubmit: (evento, history) => {
                 evento.preventDefault();
                 const store = getStore()
@@ -154,6 +155,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                         console.log(error);
                     })
             },
+
             getSignUp: (values, history) => {
                 const store = getStore();
                 fetch("http://localhost:8080/registrotienda", {
@@ -173,6 +175,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     console.log(error)
                 })
             },
+
             getSignUp2: (values, history) => {
                 const store = getStore();
                 fetch('http://localhost:8080/registrocomprador', {
@@ -194,6 +197,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
 
                 })
             },
+
             handleChangeProduct: (evento) => {
                 const { product } = getStore();
                 setStore({
@@ -201,6 +205,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 })
                 console.log(evento.target.value)
             },
+
             getCategories: () => {
                 fetch('http://localhost:8080/categories', {
                     method: "GET",
@@ -210,10 +215,10 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 }).then (res => res.json())
                 .then (data => setStore({categories: data}))
             },
+
             getSellerID: () => {
                 const store = getStore();
-                const sellerIDstore = JSON.stringify(store.sellerID.id)
-                store.product.sellerID = sellerIDstore
+                store.product.sellerID = JSON.stringify(store.sellerID.id)
             },
             
             getProducts: () => {
@@ -253,7 +258,27 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 const store = getStore()
                 setStore({favoritos: store.favoritos.concat(index)})
     
-            }
+            },
+
+            addProduct: (index) => {
+                const store = getStore()
+                setStore({wishlist: store.wishlist.concat(index)})
+            },
+
+            logout: () => {
+                localStorage.clear();
+                console.log(localStorage)
+            },
+
+            deleteProduct: (nombre) => {
+                const store = getStore()
+                setStore({wishlist: store.wishlist.filter((i, index)=> {
+                    if(index === nombre){
+                        return false
+                    } else {
+                       return true
+                    }
+                })})},
         }
     }
 }
