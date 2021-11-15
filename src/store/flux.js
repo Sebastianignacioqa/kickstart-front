@@ -27,6 +27,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
             productos: [],
             categoria:[],
             wishlist: [],
+            storename: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
@@ -231,6 +232,16 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 .then (data => setStore({productos: data}))
             },
 
+            getStorename: () => {
+                fetch('http://localhost:8080/storename', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then (data => setStore({storename: data}))
+            },
+
             showTienda: (category_id) => {
                 const store = getStore();
                 fetch('http://localhost:8080/categorias', {
@@ -262,14 +273,9 @@ export const getState = ({ setStore, getStore, getActions }) => {
 
             addProduct: (index) => {
                 const store = getStore()
-                setStore({wishlist: store.wishlist.concat(index)})
+                setStore({wishlist: store.wishlist.concat(index)}) 
+                
             },
-
-            logout: () => {
-                localStorage.clear();
-                console.log(localStorage)
-            },
-
             deleteProduct: (nombre) => {
                 const store = getStore()
                 setStore({wishlist: store.wishlist.filter((i, index)=> {

@@ -17,7 +17,7 @@ const Deseos = () => {
     return (<div className="container carrito">
         <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
         <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
-        <h1>{store.tienda}</h1>
+        <h1></h1>
         <table className="table">
             <thead>
                 <tr>

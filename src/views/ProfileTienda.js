@@ -25,7 +25,6 @@ const ProfileTienda = () => {
             </div>
             <div className="row">
                 <div className="col-12 col-sm-12">
-                    <h2>Nombre Tienda</h2>
                     <Link className="btn btn-primary btn-sm mt-3" to="/categorias">Volver a Categorías</Link>
                 </div>
             </div>

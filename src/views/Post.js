@@ -12,6 +12,7 @@ const history = useHistory();
 useEffect(() => {
     console.log(store.product)
     console.log(store.sellerID)
+    console.log(store.storename)
 }, [])
 
 return(<div className="container" >
