@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 const Home = () => {
     return(<div className="container">
-    <img src={logo} className="img-fluid w-25" alt="kickstart"/><br></br><br></br>
+    <img src={logo} className="img-fluid w-50" alt="kickstart"/><br></br><br></br>
     <div className="container-btn">
         <div className="row">
             <div className= "col-6">

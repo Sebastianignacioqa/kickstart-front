@@ -3,6 +3,7 @@ import { SellerSignUp } from '../components/SellerSignUp';
 import logo from '../image2.png';
 import '../styles/FormSeller.css';
 
+
 const FormSeller = () => {
   return (
     <div className="container">

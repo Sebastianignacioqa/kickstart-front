@@ -31,3 +31,11 @@
     padding-top: 2px !important;
     padding-bottom: 2px !important;
 }
+.checkout {
+    display: flex;
+}
+
+.tablebutton {
+    display: flex !important;
+    margin: auto !important;
+}

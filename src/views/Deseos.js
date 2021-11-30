@@ -9,14 +9,13 @@ const Deseos = () => {
 
     const {store, actions} = useContext(Context);
     
-    useEffect(() => {
-        console.log(store.productos)
-        console.log(store.categories)
-    }, [])
+    const total = store.wishlist.reduce((sum, value) => (typeof value.item_price == "number" ? sum + value.item_price : sum), 0);
+    console.log(total);
 
     return (<div className="container carrito">
+        <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
         <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
-        <h1>{store.tienda}</h1>
+        <h1></h1>
         <table className="table">
             <thead>
                 <tr>
@@ -32,14 +31,13 @@ const Deseos = () => {
                     <td className= "tableproduct"><p>{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>{product.item_title}</option>)}</p></td>
                     <td className = "tableprice pt-3"><p>{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>${product.item_price}</option>)}</p></td>
                     <td className="pt-3">{store.wishlist.map((product, index) => <option required value={product.id} key={product.id}>1</option>)}</td>
-                    <button className="delete btn btn-danger mt-3 ms-6 px-1">x</button>
                 </tr>
             </tbody>
         </table>
         <br></br><br></br>
         <div className="row mx-4">
             <div className="col">
-                <h3 className="carttotal">Total: $</h3>
+                <h3 className="carttotal">Total: ${total}</h3>
             </div>
             <div className="col d-flex justify content-end"></div>
             <button className="btn btn-primary">Ir a pagar</button>

@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 import logo from '../image.png';
-import '../styles/Login.css';
+import '../styles/Login.css'
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
-const {store, actions} = useContext(Context);
+const {store, actions} = useContext(Context)
 const history = useHistory();
 
 return (<div className="container">
-    <img src={logo} className="img-fluid w-25 p-2" alt="kickstart" />
+    <img src={logo} className="img-fluid w-75 p-2" alt="kickstart" />
     <div className="abs-center">
         <form onSubmit={(evento) => actions.handleSubmitLogin1(evento, history)} className="needs-validation" noValidate>
             <div className="mb-3 w-100">
@@ -38,7 +38,7 @@ return (<div className="container">
                     <label className ="form-check-label" name="exampleCheck1">Mantener sesión</label>
             </div> 
             <div  id="emailHelp" className ="form-text">Nunca compartiremos tus datos con nadie.</div><br></br>
-            <button onClick={actions.getSellerID} type="submit" className="btn btn-primary">Entrar</button>
+             <button type="submit" className="btn btn-primary">Entrar</button>
         </form>
         </div>
         </div>)

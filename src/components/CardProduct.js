@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Context } from '../store/appContext';
 
 
-const CardProduct = () => {
+const CardProduct = ({idtienda}) => {
 
     const { store, actions } = useContext(Context);
     useEffect(() => {
@@ -12,8 +12,8 @@ const CardProduct = () => {
     return (
         
         <div className="container">
-            {store.productos.map((producto, index) => <div className="card mx-auto mt-4" style={{ width: "22em" }} key={index}>
-                <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" className="card-img-top" alt="..." />
+            {store.productos.filter((producto) => producto.sellerID == idtienda).map((producto, index) => <div className="card mx-auto mt-4" style={{ width: "22em" }} key={index}>
+                <img src="" className="card-img-top" alt="..." />
                 <div className="card-body"> 
                     <h4 className="card-title mb-4">{producto.item_title}</h4>
                     <div className="accordion accordion-flush" id="accordionFlushExample">
@@ -42,16 +42,16 @@ const CardProduct = () => {
                                 <div className="offcanvas-body">
                                     <div className="row">
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
+                                            <img src="" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
+                                            <img src="" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
+                                            <img src="" alt="..." />
                                         </div>
                                         <div className="col-12 col-sm-12">
-                                            <img src="https://http2.mlstatic.com/D_NQ_NP_960055-MLC43655552847_102020-O.jpg" alt="..." />
+                                            <img src="" alt="..." />
                                         </div>
                                     </div>
                                 </div>
