@@ -20,7 +20,7 @@ const ProfileTienda = () => {
         <div className="container">
             <div className="row">
                 <div className="col-12 col-sm-12">
-                    <img className="img-fluid mb-3" src={logo} alt="" />
+                    <Link to="/"><img className="img-fluid mb-3" src={logo} alt="" /></Link>
                 </div>
             </div>
             <div className="row">
@@ -31,12 +31,12 @@ const ProfileTienda = () => {
             </div>
             <div className="row">
                 <div className="col-12 col-sm-12">
-                    <Link className="btn btn-primary btn-sm mt-3" to="/categorias">Volver a Categorías</Link>
+                    <Link className="btn btn-primary btn-sm mt-3 mb-4" to="/categorias">Volver a Categorías</Link>
                 </div>
             </div>
             <div className="row">
                 <div className="col-12 col-sm-12">
-                    <h3>{!!store.tienda && store.tienda.storename}</h3>
+                    <h2 className="my-4"><strong>{!!store.tienda && store.tienda.storename}</strong></h2>
                 </div>
             </div>
             <CardProduct idtienda={idtienda} />

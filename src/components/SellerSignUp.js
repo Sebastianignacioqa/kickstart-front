@@ -88,7 +88,7 @@ export const SellerSignUp = () => {
                             {store.categories.map((category, index) => <option key={category.id} value={category.id}>{category.name}</option>)}
                         </MySelect>
 
-                        <MyCheckbox name="acceptedTerms" className="checkbox"><span className="textcb">He leído y acepto los términos y condiciones</span></MyCheckbox>
+                        <MyCheckbox name="acceptedTerms" className="checkbox"><span className="textcb">Declaro que la información aquí proporcionada es verídica.</span></MyCheckbox>
                         
                         <button className="btn btn-primary mt-3" type="submit">Registrarse</button>
                     </Form>

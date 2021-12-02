@@ -12,9 +12,14 @@ const Deseos = () => {
     const total = store.wishlist.reduce((sum, value) => (typeof value.item_price == "number" ? sum + value.item_price : sum), 0);
     console.log(total);
 
+    const formatter = new Intl.NumberFormat("ES-CL", {
+        style: 'currency',
+        currency: 'CLP'
+    });
+
     return (<div className="container carrito">
         <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link>
-        <img src={logo} className="img-fluid w-50 p-2" alt="kickstart" />
+        <Link to="/"><img src={logo} className="img-fluid w-50 p-2" alt="kickstart" /></Link>
         <h1></h1>
         <table className="table">
             <thead>
@@ -37,7 +42,7 @@ const Deseos = () => {
         <br></br><br></br>
         <div className="row mx-4">
             <div className="col">
-                <h3 className="carttotal">Total: ${total}</h3>
+                <h3 className="carttotal">Total: {formatter.format(`${total}`)}</h3>
             </div>
             <div className="col d-flex justify content-end"></div>
             <button className="btn btn-primary">Ir a pagar</button>

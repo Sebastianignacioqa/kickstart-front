@@ -10,6 +10,11 @@ const WishlistButton = () => {
     const total = store.wishlist.reduce((sum, value) => (typeof value.item_price == "number" ? sum + value.item_price : sum), 0);
     console.log(total);
 
+    const formatter = new Intl.NumberFormat("ES-CL", {
+        style: 'currency',
+        currency: 'CLP'
+    });
+
 
     return (
         <div>
@@ -38,7 +43,7 @@ const WishlistButton = () => {
                             </div>
                         </div>
                         <div className="row">
-                            <h5>Total:${total}  </h5>
+                            <h5>Total: {formatter.format(`${total}`)}  </h5>
                             <p></p>
                             <Link to="/deseos" className="btn btn-primary">Continuar con la compra</Link>
                         </div>

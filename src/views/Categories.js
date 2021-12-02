@@ -11,7 +11,7 @@ const Categories = () => {
     return (
         <div><br></br><br></br>
             <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link><br></br><br></br>
-            <img className="img-fluid" src={logo} alt=""/>
+            <Link to="/"><img className="img-fluid mb-4" src={logo} alt=""/></Link>
             <Card />
         </div>
     )

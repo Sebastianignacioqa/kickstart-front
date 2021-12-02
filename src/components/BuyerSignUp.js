@@ -73,7 +73,7 @@ export const BuyerSignUp = () => {
                         <TextField label="Teléfono celular" name="phonenumber" type="text" placeholder="Ingrese un número válido de 9 dígitos" />
                         
 
-                        <BuyerCheckbox name="acceptedTerms" className="checkbox"><span className="textcb">He leído y acepto los términos y condiciones</span></BuyerCheckbox>
+                        <BuyerCheckbox name="acceptedTerms" className="checkbox"><span className="textcb">Declaro que la información aquí proporcionada es verídica.</span></BuyerCheckbox>
                         
                         <button className="btn btn-primary mt-3" type="submit">Registrarse</button>
                     </Form>

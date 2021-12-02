@@ -15,6 +15,7 @@ const Tiendas = () => {
         <>
             <NavbarFavs/> <br></br>
             <Link to="/login2" className="btn btn-primary" onClick={localStorage.clear()}>Cerrar sesion</Link><br></br><br></br>
+            <Link to="/categorias" className="btn btn-primary mb-5">Volver a categorías</Link>
             {store.tiendas && store.tiendas.map((tienda, index) => <div className="card mx-auto mb-2" style={{ width: "16rem" }} key={index}>
                 <div className="card-body">
                     <h5 className="card-title">{tienda.storename}</h5>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 import logo from '../image.png';
 import '../styles/Login.css'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Login2 = () => {
 
@@ -10,7 +10,7 @@ const {store, actions} = useContext(Context)
 const history = useHistory();
 
 return (<div className="container">
-    <img src={logo} className="img-fluid w-75 p-2" alt="kickstart" />
+    <Link to="/"><img src={logo} className="img-fluid w-75 p-2" alt="kickstart" /></Link>
     <div className="abs-center">
         <form onSubmit={(evento) => actions.handleSubmitLogin2(evento, history)} className="needs-validation" noValidate>
             <div className="mb-3 w-100">

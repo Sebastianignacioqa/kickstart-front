@@ -5,9 +5,15 @@ import { Context } from '../store/appContext';
 const CardProduct = ({idtienda}) => {
 
     const { store, actions } = useContext(Context);
+    
     useEffect(() => {
         console.log(store.productos)
     }, [])
+
+    const formatter = new Intl.NumberFormat("ES-CL", {
+        style: 'currency',
+        currency: 'CLP'
+    });
 
     return (
         
@@ -28,7 +34,7 @@ const CardProduct = ({idtienda}) => {
                             </div>
                         </div>
                     </div>
-                    <h4 className="my-2">${producto.item_price}</h4>
+                    <h4 className="my-2">{formatter.format(`${producto.item_price}`)}</h4>
                     <p className="my-3">Stock: {producto.item_stock}</p>
 
                     <div className="row">
