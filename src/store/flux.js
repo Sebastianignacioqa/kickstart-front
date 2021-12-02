@@ -27,6 +27,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
             wishlist: [],
             storename: [],
             profiletienda: [],
+            nombres: [],
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
@@ -248,6 +249,18 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     body: JSON.stringify({categoria: category_id})
                 }).then (res => res.json())
                 .then ((data) => setStore({tiendas: data}))
+            },
+
+            getName: (id) => {
+                const store = getStore();
+                fetch('http://localhost:8080/nombres', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json"
+                    },
+                    body: JSON.stringify({nombre: id})
+                }).then (res => res.json())
+                .then ((data) => setStore({nombres: data}))
             },
 
             showTienda: (sellerID) => {
