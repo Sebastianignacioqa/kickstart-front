@@ -3,7 +3,7 @@ export const getState = ({ setStore, getStore, getActions }) => {
     return {
         store: {
             login: { rut: "", password: "" },
-            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID: ""},
+            product: { item_title: "", item_description: "", item_stock: "", item_price: "", category_id: "", sellerID: "", imageID: ""},
             signUpForm: {
                 firstname: '',
                 lastname: '',
@@ -29,7 +29,8 @@ export const getState = ({ setStore, getStore, getActions }) => {
 
             isAuth: localStorage.getItem("isAuth"),
             sellerID: JSON.parse(localStorage.getItem("sellerID")),
-            buyerID: JSON.parse(localStorage.getItem("sellerID"))
+            buyerID: JSON.parse(localStorage.getItem("buyerID")),
+            imageID: JSON.parse(localStorage.getItem("imageID"))
         },
 
         actions: {
@@ -51,10 +52,12 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     })
                     .then(data => {
                         if (data.msg === "User login success") {
+                            console.log(data)
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
-                            history.push("/categorias")
                             localStorage.setItem("buyerID", JSON.stringify(data.buyer))
+                            setStore({buyerID: data.buyer.id})
+                            history.push("/categorias")
                             
                             
                         }
@@ -91,9 +94,9 @@ export const getState = ({ setStore, getStore, getActions }) => {
                             console.log(data)
                             localStorage.setItem("isAuth", JSON.stringify(true));
                             localStorage.setItem("access_token", JSON.stringify(data.access_token))
-                            localStorage.setItem("sellerID", JSON.stringify(data.seller))
                             setStore({sellerID: data.seller.id})
                             setStore({product: {...store.product, sellerID:data.seller.id}})
+                            localStorage.setItem("sellerID", JSON.stringify(data.seller.id))
                             history.push("/post")
                         
                         }
@@ -121,13 +124,40 @@ export const getState = ({ setStore, getStore, getActions }) => {
                 data.append('user', 'hubot')
                 console.log(data)
                 fetch('http://localhost:8080/post', {
-                    "mode": "no-cors",
                     method: 'POST',
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": 'application/json',
+                    },
                     body: data
                 })
                     
             },
+
+            getimgid: () => {
+                const store = getStore()
+                fetch('http://localhost:8080/img', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type":"application/json"
+                    }
+                }).then (res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setStore({imageID: data.images.id})
+                    setStore({product: {...store.product, imageID:data.images.id}})
+                    localStorage.setItem("imageID", JSON.stringify(data.images.id))
+                    console.log(store.imageID);
+                })
+            },
             
+            wrapperimg: (evento) => {
+                const actions = getActions()
+                actions.handleFileSubmit(evento);
+                actions.getimgid();
+            },
+
             handlePostSubmit: (evento, history) => {
                 evento.preventDefault();
                 const store = getStore()
@@ -147,7 +177,6 @@ export const getState = ({ setStore, getStore, getActions }) => {
                     })
                     .then(data => {
                         console.log(data)
-                        
                         history.push("/profiletienda")
                         
                     })

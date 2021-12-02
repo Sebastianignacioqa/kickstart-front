@@ -39,10 +39,11 @@ return(<div className="container" >
             <textarea onChange={actions.handleChangeProduct} name="item_description" placeholder="Breve descripcion de tu producto" className="form-control" required  value={store.product.item_description}/>
         </div>
         <div className="col-sm-12 form-group p-4 ">
+            
             <label className="alert alert-info" role="alert">Selecciona las fotos para tu producto. Puedes subir un maximo de 5 fotos</label>
             <input type="file" name="file" className="col-8 ps-3 pe-2 form-control-file btn btn-outline-secondary" multiple/>
-            <button onClick={actions.handleFileSubmit} data-bs-toggle="modal" data-bs-target="#exampleModal" className="col-sm-2 btn btn-primary m-2">Subir</button>
-            <button type="submit" className="col btn btn-primary m-3 p-4">Ingresar Producto</button>
+            <button onClick={actions.wrapperimg} data-bs-toggle="modal" data-bs-target="#exampleModal" className="col-sm-2 btn btn-primary m-2">Subir</button>
+            <button type="submit" className="col btn btn-primary m-3 p-3">Ingresar Producto</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
